@@ -1,0 +1,65 @@
+@CHARSET "utf-8";
+/* Style the sidebar - fixed full height */
+.sidebar {
+	height: 100%;
+	width: 70px;
+	position: absolute;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #b3ceff;
+	overflow-x: hidden;
+	padding-top: 16px;
+	font-size: 32px;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  	padding: 40px 30px 20px 10px;
+  	color: #ac00e6;
+  	display: block;
+}
+
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+  	color: #ffb366;
+}
+
+/* Style the main content */
+.main {
+ 	 margin-left: 60px; /* Same as the width of the sidenav */
+ 	 padding: 0px 10px;
+ 	 background-image: 
+}
+
+/*define welcome*/
+.welcome{
+	background-color: green;
+	position: relative;
+}
+
+
+/*define carrousel configuration*/
+.carrousel{
+	background-color: transparent;
+	color: #b3ceff;
+	padding-top: 15%;
+	padding-left: 25%;
+	position: absolute;
+}
+.carousel-inner img {
+      width: 460px;
+      height: 320px;
+  }
+
+/* Add media queries for small screens (when the height of the screen is less than 450px, add a smaller padding and font-size) */
+@media screen and (max-height: 480px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {
+  	font-size: 24px;
+  	padding: 64px 10px 20px 20px;	
+  }
+  .main{margin-left: 10px}
+  .carrousel{padding-left: 5%;}
+}
