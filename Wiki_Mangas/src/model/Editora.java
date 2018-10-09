@@ -1,9 +1,14 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Editora {
 	private int id;
 	private String editora;
 	
+	@Id
 	public int getId() {
 		return id;
 	}

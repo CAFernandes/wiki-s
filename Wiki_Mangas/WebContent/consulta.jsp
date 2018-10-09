@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List, model.Manga" %>
+    pageEncoding="ISO-8859-1"  import="java.util.List" import=model.Manga %>
 <!DOCTYPE html>
-<html>
+<html>//
 <head>
 <meta charset="ISO-8859-1">
 <title>Wiki Mangás</title>
