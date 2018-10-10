@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.AutorDao;
-import DAO.DaoAutor;
+import DAO.Autor.AutorDao;
+import DAO.Autor.DaoAutor;
 import model.Autor;
 
 @WebServlet("/AutorController")
