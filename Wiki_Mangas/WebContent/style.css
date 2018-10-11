@@ -1,0 +1,68 @@
+#navegacao{
+	font-family:cursive, monospace, sans-serif;
+}
+#body-index{
+	text-align: center;
+	font-family:cursive, monospace, sans-serif;
+	padding: 25px;
+	background: #000 url("https://images.alphacoders.com/545/545777.jpg") no-repeat center bottom;
+	background-size: cover;
+}
+
+h2{
+	color: white;
+	text-align: center;
+}
+
+h3{
+	color: white;
+}
+
+/*login*/
+#paglogin {
+    width: 550px;
+    padding: 100px;
+    font-family:cursive, monospace, sans-serif; 
+}
+    
+#form-login{
+    color: white;
+	background:#f0eff3;
+	padding: 26px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+    background: #000 url("https://images7.alphacoders.com/881/881074.jpg") top center no-repeat;
+}
+    
+#body-login {
+    color: white;
+	background: gray;
+	padding: 26px;
+    background: #000 url("https://images4.alphacoders.com/904/904104.jpg") top center no-repeat;
+}
+    
+.jumbotron{
+    background: #f0eff3;
+    box-shadow: 3px 3px 0 #450;
+   	background: #000 url("https://images7.alphacoders.com/881/881074.jpg") top center no-repeat;
+}
+
+
+/*cadastro Editora, Autor*/
+
+#body-cadastro{
+	text-align: center;
+	font-family:cursive, monospace, sans-serif;
+	padding: 25px;
+	background: #000 url("https://images7.alphacoders.com/562/562640.jpg") no-repeat center bottom;
+	background-size: cover;
+}
+
+#form-cadastro{
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}

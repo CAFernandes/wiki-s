@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,23 +12,23 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 </head>
-<body id="body-cadastro" style="height: 1000px">
+<body id="body-cadastro" style="height: 1030px">
 	<jsp:include page="menuAdmin.jsp"></jsp:include>
 	<div class="container-fluid" style="margin-top: 80px">
-		<h2 style="color: white">
-			<b>Cadastro de Mangás</b>
+		<h2 sytle="color:white;">
+			<b>Alterar Mangá</b>
 		</h2>
 	</div>
-
 	<form id="form-cadastro">
 		<div class="form-group">
 			<div class="form-group col-md-6">
-				<label for="inputTitulo">Título</label> 
-				<input type="text" class="form-control" id="inputTitulo">
+				<label for="inputTitulo">Título</label> <input type="text"
+					class="form-control" id="inputTitulo">
 			</div>
+
 			<div class="form-group col-md-6">
-				<label for="inputGenero">Gênero</label> 
-				<input type="text" class="form-control" id="inputGenero">
+				<label for="inputGenero">Gênero</label> <input type="text"
+					class="form-control" id="inputGenero">
 			</div>
 		</div>
 

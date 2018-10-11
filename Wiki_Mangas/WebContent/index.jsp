@@ -8,11 +8,10 @@ UserInfo userInfo = (UserInfo)sessao.getAttribute("LOGADO");
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Wiki_Mangá</title>
-  
-  <meta charset="utf-8">
-  
+  <title>Wiki Mangás</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
@@ -20,7 +19,7 @@ UserInfo userInfo = (UserInfo)sessao.getAttribute("LOGADO");
   
 </head>
 
-<body id ="body" style="height:850px">
+<body id ="body-index" style="height:850px;">
 	<% if(userInfo != null && userInfo.isLogado()){ %>
 		<jsp:include page="menuAdmin.jsp"></jsp:include>
 		<div class="container-fluid" style="margin-top:80px">
