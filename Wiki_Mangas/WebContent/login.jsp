@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>Wiki_Mangá</title>
+  <title>Wiki_MangÃ¡</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel ="stylesheet" href ="WebContent/Resources/Bootstrap/css/estilo.css">
   <link rel="stylesheet" type="text/css" href="./style.css">
@@ -15,7 +15,7 @@
 <body id = "body-login">
 	<div class="container" id ="paglogin">
     <div class="jumbotron">
-      <h3 class ="text-center"><strong>Wiki_Mangá</strong></h3>      
+      <h3 class ="text-center"><strong>Wiki_MangÃ¡</strong></h3>      
       <form id = "form-login" action="./login" method="POST">
         <div class="form-group">
           <label for="login">Login</label>

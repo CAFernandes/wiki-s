@@ -5,11 +5,11 @@
 	text-align: center;
 	font-family:cursive, monospace, sans-serif;
 	padding: 25px;
-	background: #000 url("https://images.alphacoders.com/545/545777.jpg") no-repeat center bottom;
+	background:  url("https://images5.alphacoders.com/652/652753.png") no-repeat center bottom;
 	background-size: cover;
 }
 
-h2{
+b{
 	color: white;
 	text-align: center;
 }
@@ -65,4 +65,19 @@ h3{
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
+}
+
+
+/*Carrousel*/
+
+.carousel-item {
+height: 550px;
+overflow: hidden;
+width: 100%;
+margin: auto;
+
+}
+.carousel-item img {
+width: 100%;
+
 }

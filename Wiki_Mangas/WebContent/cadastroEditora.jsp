@@ -20,10 +20,10 @@
 		</h2>
 	</div>
 
-	<form id="form-cadastro">
+	<form id="form-cadastro" method="POST" action="./CadastroEditora">
 		<div class="form-group col-md-6">
-			<label for="inputNome">Editora</label> <input type="text"
-				class="form-control" id="inputNome">
+			<label for="inputNome">Editora</label> 
+			<input type="text" class="form-control" id="inputNome">
 		</div>
 		<button id="submit" type="button" class="btn btn-primary btn-default">Cancelar</button>
 		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>

@@ -1,4 +1,4 @@
-package chain;
+package controller.chain;
 
 import java.io.IOException;
 

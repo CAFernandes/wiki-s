@@ -1,4 +1,4 @@
-package chain;
+package controller.chain;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.JOptionPane;
 
 import DAO.user.UserDao;
 import model.UserInfo;
@@ -28,7 +29,10 @@ public class Authenticor extends HttpServlet {
 			userInfo = new UserDao().aunteticar(userInfo);
 			if(userInfo.isLogado()) {
 				sessao.setAttribute("LOGADO", userInfo);
-				response.sendRedirect("./index.jsp");;
+				response.sendRedirect("./index.jsp");
+			}else {
+				JOptionPane.showMessageDialog(null, "Erro ao logar");
+				response.sendRedirect("./login.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			System.out.println(e);

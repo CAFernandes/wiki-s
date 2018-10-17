@@ -1,10 +1,7 @@
 package model;
 
 import java.sql.Date;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
 public class Manga {
 	private int id;
 	private String titulo;
@@ -16,7 +13,6 @@ public class Manga {
 	private Autor autor;
 	private Editora editora;
 	
-	@Id
 	public int getId() {
 		return id;
 	}

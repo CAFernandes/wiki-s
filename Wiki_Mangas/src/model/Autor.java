@@ -1,14 +1,17 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Autor {
 	private int id;
 	private String nome;
 	
-	@Id
+	public Autor() {
+		
+	}
+	
+	public Autor(String nome) {
+		setNome(nome);
+	}
+
 	public int getId() {
 		return id;
 	}

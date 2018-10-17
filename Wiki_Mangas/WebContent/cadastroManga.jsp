@@ -21,7 +21,7 @@
 		</h2>
 	</div>
 
-	<form id="form-cadastro">
+	<form id="form-cadastro" method="POST" action="./CadastroMangas">
 		<div class="form-group">
 			<div class="form-group col-md-6">
 				<label for="inputTitulo">Título</label> 
@@ -34,7 +34,8 @@
 		</div>
 
 		<div class="form-group col-md-6">
-			<label for="inputAutor">Autor</label> <select id="inputAutor"
+			<label for="inputAutor">Autor</label> 
+			<select id="inputAutor"
 				class="form-control">
 				<option selected></option>
 				<option>...</option>
@@ -67,7 +68,8 @@
 			</div>
 
 			<div class="form-group col-md-4">
-				<label for="inputState">Status</label> <select id="inputStatus"
+				<label for="inputState">Status</label> 
+				<select id="inputStatus"
 					class="form-control">
 					<option selected></option>
 					<option>Em Andamento</option>
@@ -78,8 +80,8 @@
 			</div>
 
 			<div class="form-group col-md-6">
-				<label for="inputLink">Link</label> <input type="text"
-					class="form-control" id="inputlink">
+				<label for="inputLink">Link</label> 
+				<input type="text" class="form-control" id="inputlink">
 			</div>
 		</div>
 
