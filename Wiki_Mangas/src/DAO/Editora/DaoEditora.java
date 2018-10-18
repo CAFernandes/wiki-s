@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Editora;
 
 import java.sql.SQLException;
 import java.util.List;

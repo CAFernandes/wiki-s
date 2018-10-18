@@ -1,4 +1,4 @@
-package DAO;
+package DAO.Autor;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import DAO.connection.GenericDao;
 import model.Autor;
 
 public class AutorDao implements DaoAutor{
