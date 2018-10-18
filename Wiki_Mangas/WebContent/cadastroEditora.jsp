@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,24 +12,22 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 	
 	<title>Wiki Mangás</title>
-
 </head>
-<body id = "body-login">
-	<div class="container" id ="paglogin">
-    <div class="jumbotron">
-      <h3 class ="text-center"><strong>Wiki Mangás</strong></h3>      
-      <form id = "form-login" action="./login" method="POST">
-        <div class="form-group">
-          <label for="login">Login</label>
-          <input type="login" class="form-control" id="inputLogin" name="user" aria-describedby="login" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="senha">Senha</label>
-          <input type="password" class="form-control" id="inputSenha" name="senha" placeholder="">
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-      </form>    
-    </div>     
-  </div>
+<body id="body-cadastro" style="height: 760px">
+	<jsp:include page="menuAdmin.jsp"></jsp:include>
+	<div class="container-fluid" style="margin-top: 80px">
+		<h2 style="color: white">
+			<b>Cadastro de Editora</b>
+		</h2>
+	</div>
+
+	<form id="form-cadastro" method="POST" action="./CadastroEditora">
+		<div class="form-group col-md-6">
+			<label for="inputNome">Editora</label> 
+			<input type="text" class="form-control" id="inputNome">
+		</div>
+		<button id="submit" type="button" class="btn btn-primary btn-default">Cancelar</button>
+		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
+	</form>
 </body>
 </html>

@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.DaoManga;
-import DAO.MangaDao;
+import DAO.MangaDao.DaoManga;
+import DAO.MangaDao.MangaDao;
 import model.Autor;
 import model.Editora;
 import model.Manga;

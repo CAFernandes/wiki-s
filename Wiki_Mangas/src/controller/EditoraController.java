@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.DaoEditora;
-import DAO.EditoraDao;
+import DAO.Editora.DaoEditora;
+import DAO.Editora.EditoraDao;
 import model.Editora;
 
 @WebServlet("/EditoraController")
