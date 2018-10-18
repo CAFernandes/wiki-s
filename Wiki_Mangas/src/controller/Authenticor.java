@@ -1,7 +1,6 @@
-package chain;
+package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.user.UserDao;
-import model.UserInfo;
+import DAO.GenericDAOException;
+import DAO.User.UserDao;
+import model.User;
 
 @WebServlet("/login")
 public class Authenticor extends HttpServlet {
@@ -23,15 +23,15 @@ public class Authenticor extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession sessao = request.getSession();
-		UserInfo userInfo = new UserInfo(request.getParameter("inputLogin"), request.getParameter("inputSenha"));
+		User user = new User(request.getParameter("user"), request.getParameter("senha"));
 		try {
-			userInfo = new UserDao().aunteticar(userInfo);
-			if(userInfo.isLogado()) {
-				sessao.setAttribute("LOGADO", userInfo);
+			user = new UserDao().autenticar(user);
+			if(user.isLogado()) {
+				sessao.setAttribute("LOGADO", user);
 				response.sendRedirect("./index.jsp");;
 			}
-		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println(e);
+		} catch (GenericDAOException e) {
+			System.err.println(e);
 		}
 	}
 

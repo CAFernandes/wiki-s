@@ -5,15 +5,38 @@
 	text-align: center;
 	font-family:cursive, monospace, sans-serif;
 	padding: 25px;
-	background: #000 url("https://images.alphacoders.com/545/545777.jpg") no-repeat center bottom;
+	background:  url("https://images5.alphacoders.com/652/652753.png") no-repeat center bottom;
 	background-size: cover;
 }
-
-h2{
+#body-alterar{
+	text-align: center;
+	font-family: cursive, monospace, sans-serif;
+	padding: 25px;
+	background: #000 url("https://images7.alphacoders.com/562/562640.jpg") no-repeat center bottom;
+	background-size: cover;
+}
+#body-consultar {
+	text-align: center;
+	font-family: cursive, monospace, sans-serif;
+	padding: 25px;
+	background: url("https://images.alphacoders.com/380/38003.jpg") no-repeat center bottom;
+	background-size: cover;
+}
+#body-login {
+    color: white;
+	background: gray;
+	padding: 26px;
+    background: #000 url("https://images4.alphacoders.com/904/904104.jpg") top center no-repeat;
+}
+b{
 	color: white;
 	text-align: center;
 }
-
+h2 {
+	color: black;
+	padding: 15px;
+	bottom: 20px;
+}
 h3{
 	color: white;
 }
@@ -33,13 +56,6 @@ h3{
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
     background: #000 url("https://images7.alphacoders.com/881/881074.jpg") top center no-repeat;
-}
-    
-#body-login {
-    color: white;
-	background: gray;
-	padding: 26px;
-    background: #000 url("https://images4.alphacoders.com/904/904104.jpg") top center no-repeat;
 }
     
 .jumbotron{
@@ -65,4 +81,27 @@ h3{
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
+}
+
+
+/*Carrousel*/
+
+.carousel-item {
+height: 550px;
+overflow: hidden;
+width: 100%;
+margin: auto;
+
+}
+.carousel-item img {
+width: 100%;
+
+}
+
+
+#form-consultar {
+	padding: 40px;
+	color: white;
+	font-weight: bold;
+	
 }

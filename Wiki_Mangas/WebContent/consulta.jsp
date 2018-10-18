@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="model.UserInfo" import="javax.servlet.http.HttpSession"%>
+    pageEncoding="ISO-8859-1" import="model.User" import="javax.servlet.http.HttpSession"%>
     
 <%
-HttpSession sessao = request.getSession();
-UserInfo userInfo = (UserInfo)sessao.getAttribute("LOGADO"); 
-%>
+    	HttpSession sessao = request.getSession();
+    User userInfo = (User)sessao.getAttribute("LOGADO");
+    %>
 <!DOCTYPE html>
 <html>
 <head>

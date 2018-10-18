@@ -1,4 +1,4 @@
-package chain;
+package controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.UserInfo;
+import model.User;
 
 @WebServlet(name = "logoff", urlPatterns = { "/logoff" })
 public class logoff extends HttpServlet {
@@ -21,7 +21,7 @@ public class logoff extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		UserInfo uInfo = (UserInfo) session.getAttribute("LOGADO");
+		User uInfo = (User) session.getAttribute("LOGADO");
 		uInfo.setLogado(false);
 		session.setAttribute("LOGADO", uInfo);
 		response.sendRedirect("./index.jsp");

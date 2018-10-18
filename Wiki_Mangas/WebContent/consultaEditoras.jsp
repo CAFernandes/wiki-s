@@ -19,7 +19,7 @@
 	<title>Wiki Mangás</title>
 </head>
 
-<body id="body-alterar" style="height: 760px">
+<body id="body-consultar" style="height: 1030px">
 	<%
 		if (userInfo != null && userInfo.isLogado()) {
 	%>
@@ -31,27 +31,38 @@
 	<%
 		}
 	%>
-
-	<div class="container-fluid" style="margin-top: 80px"></div>
-
-	<h2>
-		<b>Alterar Autor</b>
-	</h2>
-
-	<form id="form">
-		<div class="form-group col-md-6">
-			<label for="inputNome">Nome</label> <input type="text"
-				class="form-control" id="inputNome">
+	<div class="container-fluid" style="margin-top: 80px">	
+		<h2> Lista de Editores </h2>
+	</div>
+	
+	<form>
+		<div class="form-group col-md-8 text-center input-group">
+			<label for="nome">Editora</label>
+			<div class="input-group-btn col-md-12 text-center">
+				<input type="text" class="form-control" id="editora" name="editora"
+					value="Pesquisar">
+				<button type="submit" name="cmd" class="btn btn-primary btn-default"
+					value="Pesquisar">Pesquisar</button>
+			</div>
 		</div>
-
-
-
-
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cancelar</button>
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
-
+		<table class="table table-striped">
+			<thead class="thead-dark">
+				<tr>
+					<th>Código</th>
+					<th>Editora</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 
-
+	
 </body>
 </html>

@@ -1,11 +1,11 @@
 package model;
 
-public class UserInfo {
+public class User {
 	private boolean logado;
 	private String user;
 	private String senha;
 	
-	public UserInfo(String user, String senha) {
+	public User(String user, String senha) {
 		setUser(user);
 		setsenha(senha);
 		setLogado(false);
