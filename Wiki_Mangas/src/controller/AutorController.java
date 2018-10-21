@@ -23,7 +23,7 @@ public class AutorController extends HttpServlet {
         super();
     }
 
-    /*nesta funcção eu crio um doGet para gerar uma lista de autores e exibir na pág html*/
+    /*No doGet para gerar uma lista de autores e exibir na pág html*/
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DaoAutor dAutor;
 		try {

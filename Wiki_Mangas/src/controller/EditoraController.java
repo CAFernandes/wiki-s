@@ -23,7 +23,7 @@ public class EditoraController extends HttpServlet {
         super();
     }
     
-    /*nesta funcção eu crio um doGet para gerar uma lista de editoras e exibir na pág html*/
+    /*No doGet para gerar uma lista de editoras e exibir na pág html*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	DaoEditora dEditora;
     	try {
@@ -82,7 +82,7 @@ public class EditoraController extends HttpServlet {
 		response.sendRedirect("./cadastrarEditora.jsp");
 	}
 	
-	/*nesta função eu solicito alguma alteração no registro da editora no banco através*/
+	/*nesta função eu solicito alguma alteração no registro da editora no banco*/
 	private void alterar(HttpServletRequest request, HttpServletResponse response, DaoEditora dEditora) throws NumberFormatException, IOException {
 		HttpSession sessao = request.getSession();
 		String id = request.getParameter("editoraid");
@@ -115,7 +115,7 @@ public class EditoraController extends HttpServlet {
 		response.sendRedirect("./consultaEditoras.jsp");
 	}
 	
-	/*Nesta função eu consulto o banco atravéz de um nome para criar uma lista de autores que atenda os requisitos*/
+	/*Nesta função eu consulto o banco atravéz de um nome para criar uma lista de editoras que atenda os requisitos*/
 	private void consultar(HttpServletRequest request, HttpServletResponse response, DaoEditora dEditora) throws IOException {
 		HttpSession sessao = request.getSession();
 		try {
