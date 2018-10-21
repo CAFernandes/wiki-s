@@ -1,15 +1,15 @@
 package DAO.MangaDao;
 
-import java.sql.SQLException;
 import java.util.List;
 
+import DAO.GenericDAOException;
 import model.Manga;
 
 public interface DaoManga {
-	void adicionar(Manga m) throws SQLException;
-	List<Manga> pesquisarPorNome(String titulo) throws SQLException;
-	List<Manga> listarTodosMangas() throws SQLException;
-	void remover(int id) throws SQLException;
-	void alterar(int id, Manga m) throws SQLException;
+	void adicionar(Manga m) throws GenericDAOException;
+	List<Manga> pesquisarPorNome(String titulo) throws GenericDAOException;
+	List<Manga> listarTodosMangas() throws GenericDAOException;
+	void remover(int id) throws GenericDAOException;
+	void alterar(int id, Manga m) throws GenericDAOException;
 
 }

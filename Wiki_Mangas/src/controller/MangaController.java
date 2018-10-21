@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import DAO.GenericDAOException;
 import DAO.MangaDao.DaoManga;
 import DAO.MangaDao.MangaDao;
 import model.Autor;
@@ -30,12 +30,8 @@ public class MangaController extends HttpServlet {
     /*No doGet para gerar uma lista de mangas e exibir na pág html*/
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	DaoManga dManga;
-		try {
-			dManga = new MangaDao();
-			listar(request, response, dManga);
-		}catch(ClassNotFoundException | SQLException e) {
-			System.err.println(e);
-		}
+		dManga = new MangaDao();
+		listar(request, response, dManga);
     }
     
     /*No doPost recupero um identificador do front e determino qual a função deve ser executada*/
@@ -43,30 +39,20 @@ public class MangaController extends HttpServlet {
 		DaoManga dManga;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		int opc = (int) request.getSession().getAttribute("opc");//nesta linha estou recuperando o indetificador da função e o convertendo para inteiro pra o usar
-		/* Este é o padrão de escolha
-		 * 1 = Cadastro
-		 * 2 = Consulta
-		 * 3 = Alterar
-		 * 4 = Default(Excluir)
-		 */
-		try {
-			dManga = new MangaDao();//eu estabeleço uma Dao comum para as funções necessárias para o Mangá
-			switch (opc) {//nesta linha estou fazendo a escolha da função que irá executar o que foi solicitado no front pelo indetificador
-			case 1:
-				cadastrar(request, response, dManga, sdf);
-				break;
-			case 2:
-				consultar(request, response, dManga);
-				break;
-			case 3:
-				alterar(request, response, dManga, sdf);
-				break;
-			default:
-				remover(request, response, dManga);
-				break;
-			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+		dManga = new MangaDao();//eu estabeleço uma Dao comum para as funções necessárias para o Mangá
+		switch (opc) {//nesta linha estou fazendo a escolha da função que irá executar o que foi solicitado no front pelo indetificador
+		case 1:
+			cadastrar(request, response, dManga, sdf);
+			break;
+		case 2:
+			consultar(request, response, dManga);
+			break;
+		case 3:
+			alterar(request, response, dManga, sdf);
+			break;
+		default:
+			remover(request, response, dManga);
+			break;
 		}
 		
 		
@@ -94,7 +80,7 @@ public class MangaController extends HttpServlet {
 		}
 		try {
 			dManga.adicionar(m);
-		} catch(SQLException e1) {
+		} catch(GenericDAOException e1) {
 			e1.printStackTrace();
 		}
 		
@@ -118,14 +104,13 @@ public class MangaController extends HttpServlet {
 		m.setLink(request.getParameter("link"));
 		try {
 			m.setDt_lancamento((new java.sql.Date(sdf.parse(request.getParameter("data")).getTime())));
-		} catch (ParseException e2) {
-
-			e2.printStackTrace();
+		} catch (ParseException e1) {
+			e1.printStackTrace();
 		}
 		try {
 			dManga.alterar(Integer.parseInt(id), m);
-		} catch(SQLException e4) {
-			e4.printStackTrace();
+		} catch(GenericDAOException e1) {
+			e1.printStackTrace();
 		}
 		response.sendRedirect("./consultaMangas.jsp");
 	}
@@ -140,7 +125,7 @@ public class MangaController extends HttpServlet {
 			for (Manga m : lista) {
 				m.getTitulo();
 			}
-		} catch(SQLException e) {
+		} catch(GenericDAOException e) {
 			e.printStackTrace();
 		}
 		
@@ -160,7 +145,7 @@ public class MangaController extends HttpServlet {
 				sessao.setAttribute("MANGAS", lista); // coloca a lista na sessão para que a view tenha acesso a ela e possa exibir os dados da lista na tabela
 				response.sendRedirect("./consultaAutores.jsp"); // redireciono para a tela de consulta
 			}
-		} catch(SQLException e) {
+		} catch(GenericDAOException e) {
 			e.printStackTrace();
 		}
 		
@@ -174,7 +159,7 @@ public class MangaController extends HttpServlet {
 			dManga.remover(Integer.parseInt(id));
 			List<Manga> lista = dManga.listarTodosMangas(); //depois de remover ele deve enviar a lista atual dos mangás, ou seja, o que foram excluídos não irão aparecer mais na lista
 			sessao.setAttribute("MANGAS", lista);
-		} catch(SQLException e) {
+		} catch(GenericDAOException e) {
 			e.printStackTrace();
 		}
 		response.sendRedirect("./consultaMangas.jsp");
