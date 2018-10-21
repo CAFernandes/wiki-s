@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import model.User;
 
-@WebFilter({"/index.jsp", "/alteracao.jsp"})
+@WebFilter({"/alterarAutor.jsp", "/alterarEditora.jsp", "/alterarMangas.jsp", "/cadastroAutor.jsp", 
+	"/cadastroEditora.jsp", "/cadastroManga.jsp"})
 public class AuthenticationFilter implements Filter {
 
    

@@ -13,7 +13,7 @@
 	
 	<title>Wiki Mangás</title>
 </head>
-<body id="body-cadastro" style="height: 1030px">
+<body id="body-cadastro">
 	<jsp:include page="menuAdmin.jsp"></jsp:include>
 	<div class="container-fluid" style="margin-top: 80px">
 		<h2>

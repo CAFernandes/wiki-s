@@ -11,7 +11,7 @@
 <body>
 	<nav id ="navegacao" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top nav-brand-logado">
 	 	<div id="navbar" class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top nav-brand-logado">
-	  		<a class="navbar-brand" href="#">Wiki Mangá</a>
+	  		<a class="navbar-brand" href="./index.jsp">Wiki Mangá</a>
 	  		<ul class="navbar-nav ml-auto">
 	    		<li class="nav-item">
 	      			<a class="nav-link" href="./cadastroManga.jsp">Mangás</a>
@@ -23,13 +23,13 @@
 			    	<a class="nav-link" href="./cadastroEditora.jsp">Editora</a>
 			    </li>
 			    <li class="nav-item">
-			    	<a class="nav-link" href="#">Lista de Mangás</a>
+			    	<a class="nav-link" href="./consultaMangas.jsp">Lista de Mangás</a>
 			    </li>
 			    <li class="nav-item">
-			    	<a class="nav-link" href="#">Lista de Autores</a>
+			    	<a class="nav-link" href="./consultaAutores.jsp">Lista de Autores</a>
 			    </li>
 			    <li class="nav-item">
-					<a class="nav-link" href="#">Lista de Editoras</a>
+					<a class="nav-link" href="./consultaEditoras.jsp">Lista de Editoras</a>
 			    </li>
 			   	<li class="nav-item">
 			       	<a class ="nav-link" href="./logoff">Usuário:<strong>Administrador</strong></a>

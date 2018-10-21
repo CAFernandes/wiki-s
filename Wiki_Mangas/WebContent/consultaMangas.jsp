@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="model.User" import="javax.servlet.http.HttpSession"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.List, model.Manga, model.User, javax.servlet.http.HttpSession"%>
 
 <%
 	HttpSession sessao = request.getSession();
+	sessao.setAttribute("opc", 2);	
 	User userInfo = (User) sessao.getAttribute("LOGADO");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -19,34 +21,32 @@
 	<title>Wiki Mangás</title>
 </head>
 
-<body id="body-consultar" style="height: 1030px">
-	<%
-		if (userInfo != null && userInfo.isLogado()) {
-	%>
-	<jsp:include page="menuAdmin.jsp"></jsp:include>
-	<%
-		} else {
-	%>
-	<jsp:include page="menuVisitante.jsp"></jsp:include>
-	<%
-		}
-	%>
+<body id="body-consultar">
+	<% if (userInfo != null && userInfo.isLogado()) {%>
+		<jsp:include page="menuAdmin.jsp"/>
+	<%} else { %>
+		<jsp:include page="menuVisitante.jsp"/>
+	<% } %>
+	
 	<div class="container-fluid" style="margin-top: 80px">
-		<h2>
-			<b>Lista de Mangás</b>
-		</h2>
+		<h2>Lista de Mangás</h2>
 	</div>
-	<form>
+	<%if(sessao.getAttribute("msg") != null && sessao.getAttribute("msg").equals("error")){ %>
+	<div class="col-lg-12 alert">
+		<h3 class="alert alert-primary">Não foi localizado manga(s)</h3>
+	</div>
+	<% sessao.removeAttribute("msg");
+	} %>
+	<form action = "./MangaController" method="get">
 		<div class="form-group col-md-8 text-center input-group">
-			<label for="titulo">Título</label>
 			<div class="input-group-btn col-md-12 text-center">
 				<input type="text" class="form-control" id="titulo" name="titulo"
-					value="Pesquisar">
+					placeholder="Pesquisar por Nome">
 				<button type="submit" name="cmd" class="btn btn-primary btn-default"
 					value="Pesquisar">Pesquisar</button>
 			</div>
 		</div>
-			<table class="table table-striped">
+		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
 					<th>Título</th>
@@ -57,11 +57,35 @@
 					<th>Data de Lançamento</th>
 					<th>Status</th>
 					<th>Link</th>
+					<%if (userInfo != null && userInfo.isLogado()) {%>
+					<th>Ações</th>
+					<% } %>	
 				</tr>
 			</thead>
+			<% if(sessao.getAttribute("MANGAS") == null){ %>	
+				<jsp:include page="/MangaController"/>			
+			<% }
+			List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
+			if(list != null && list.size() > 0){ %>
 			<tbody>
+				<%for(Manga m : list) {%>
+					<tr>
+						<td><%= m.getTitulo() %></td>
+						<td><%= m.getGenero() %></td>
+						<td><%= m.getAutor().getNome() %></td>
+						<td><%= m.getEditora().getEditora() %></td>
+						<td><%= m.getVolume() %></td>
+						<td><%= m.getDt_lancamento() %></td>
+						<td><%= m.getStatus() %></td>
+						<td><%= m.getLink() %></td>
+						<%if (userInfo != null && userInfo.isLogado()) { %>
+						<td><a href="./alterarMangas.jsp?id=<%= m.getId()%>">Editar</a></td>
+						<% } %>
+					</tr>
+				<% } %>
 			</tbody>
 		</table>
+		<% } %>
 	</form>
 </body>
 </html>

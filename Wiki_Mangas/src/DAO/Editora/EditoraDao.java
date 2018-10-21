@@ -39,7 +39,7 @@ public class EditoraDao implements DaoEditora{
 		
 		while(rs.next()) {
 			Editora e = new Editora();
-			e.setId(rs.getInt("id"));
+			e.setId(rs.getInt("codigo"));
 			e.setEditora(rs.getString("editora"));
 			editoras.add(e);
 		}
@@ -57,7 +57,7 @@ public class EditoraDao implements DaoEditora{
 		
 		while(rs.next()) {
 			Editora e = new Editora();
-			e.setId(rs.getInt("id"));
+			e.setId(rs.getInt("codigo"));
 			e.setEditora(rs.getString("editora"));
 			editoras.add(e);
 		}

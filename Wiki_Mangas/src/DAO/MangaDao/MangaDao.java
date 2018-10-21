@@ -38,28 +38,29 @@ public class MangaDao implements DaoManga{
 		ps.executeUpdate();
 		
 	}
-
+	
 	@Override
 	public List<Manga> pesquisarPorNome(String titulo) throws SQLException {
-		String sql = "SELECT * FROM manga WHERE titulo like ?"; // tem que ter um inner join aqui 
+		String sql = "SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"+
+				"m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m " + 
+				"INNER JOIN autor a  ON a.id = m.autor_id " + 
+				"INNER JOIN editora e ON e.codigo = m.editora_id WHERE titulo like ?"; // tem que ter um inner join aqui 
 		
 		List<Manga> mangas = new ArrayList<>();
 		PreparedStatement ps = c.prepareStatement(sql);
 		ps.setString(1, "%" + titulo + "%");
 		ResultSet rs = ps.executeQuery();
-		
 		while(rs.next()) {
 			Manga m = new Manga();
 			Autor a = new Autor();
 			Editora e = new Editora();
 			m.setId(rs.getInt("id"));
 			a.setId(rs.getInt("autor_id"));
-			a.setNome(rs.getString("nome"));
+			a.setNome(rs.getString("autor"));
 			m.setAutor(a);
 			e.setId(rs.getInt("editora_id"));
 			e.setEditora(rs.getString("editora"));
-			m.setEditora(e);
-			m.setTitulo(rs.getString("titulo"));
+			m.setEditora(e);			m.setTitulo(rs.getString("titulo"));
 			m.setGenero(rs.getString("genero"));
 			m.setVolume(rs.getInt("volume"));
 			m.setDt_lancamento(rs.getDate("dt_lancamento"));
@@ -72,7 +73,11 @@ public class MangaDao implements DaoManga{
 
 	@Override
 	public List<Manga> listarTodosMangas() throws SQLException {
-		String sql = "SELECT * FROM manga"; //tem que fazer um inner join aqui
+		String sql = 
+				"SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"+
+				"m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m " + 
+				"INNER JOIN autor a  ON a.id = m.autor_id " + 
+				"INNER JOIN editora e ON e.codigo = m.editora_id"; //tem que fazer um inner join aqui
 		
 		List<Manga> mangas = new ArrayList<>();
 		PreparedStatement ps = c.prepareStatement(sql);
@@ -84,7 +89,7 @@ public class MangaDao implements DaoManga{
 			Editora e = new Editora();
 			m.setId(rs.getInt("id"));
 			a.setId(rs.getInt("autor_id"));
-			a.setNome(rs.getString("editora_id"));
+			a.setNome(rs.getString("autor"));
 			m.setAutor(a);
 			e.setId(rs.getInt("editora_id"));
 			e.setEditora(rs.getString("editora"));
@@ -92,11 +97,10 @@ public class MangaDao implements DaoManga{
 			m.setTitulo(rs.getString("titulo"));
 			m.setGenero(rs.getString("genero"));
 			m.setVolume(rs.getInt("volume"));
-			m.setDt_lancamento(rs.getDate("dt_lancamento"));
+			m.setDt_lancamento(rs.getDate("data_publicacao"));
 			m.setStatus(rs.getString("status"));
 			m.setLink(rs.getString("link"));
 			mangas.add(m);
-			
 		}
 	
 		return mangas;
