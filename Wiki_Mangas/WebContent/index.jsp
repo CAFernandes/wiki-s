@@ -19,7 +19,7 @@
 	<title>Wiki Mangás</title>
 </head>
 
-<body id="body-index" style="height: 850px;">
+<body id="body-index">
 	<%
 		if (userInfo != null && userInfo.isLogado()) {
 	%>

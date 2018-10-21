@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" %>
+<% request.getSession().setAttribute("opc", 1); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,10 +14,10 @@
 	
 	<title>Wiki Mangás</title>
 </head>
-<body id="body-cadastro" style="height: 760px">
+<body id="body-cadastro">
 	<jsp:include page="menuAdmin.jsp"></jsp:include>
 	<div class="container-fluid" style="margin-top: 80px">
-		<h2 style="color: white">
+		<h2>
 			<b>Cadastro de Editora</b>
 		</h2>
 	</div>

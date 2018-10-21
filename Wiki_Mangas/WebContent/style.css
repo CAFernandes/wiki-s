@@ -1,3 +1,7 @@
+#top{
+	margin-top: 80px
+}
+
 #navegacao{
 	font-family:cursive, monospace, sans-serif;
 }
@@ -7,6 +11,7 @@
 	padding: 25px;
 	background:  url("https://images5.alphacoders.com/652/652753.png") no-repeat center bottom;
 	background-size: cover;
+	height: 850px;
 }
 #body-alterar{
 	text-align: center;
@@ -14,6 +19,7 @@
 	padding: 25px;
 	background: #000 url("https://images7.alphacoders.com/562/562640.jpg") no-repeat center bottom;
 	background-size: cover;
+	height: 760px;
 }
 #body-consultar {
 	text-align: center;
@@ -21,6 +27,15 @@
 	padding: 25px;
 	background: url("https://images.alphacoders.com/380/38003.jpg") no-repeat center bottom;
 	background-size: cover;
+	height: 960px;
+}
+#body-cadastro{
+	text-align: center;
+	font-family:cursive, monospace, sans-serif;
+	padding: 25px;
+	background: #000 url("https://images7.alphacoders.com/562/562640.jpg") no-repeat center bottom;
+	background-size: cover;
+	height: 760px;
 }
 #body-login {
     color: white;
@@ -57,7 +72,13 @@ h3{
 	-webkit-border-radius: 5px;
     background: #000 url("https://images7.alphacoders.com/881/881074.jpg") top center no-repeat;
 }
-    
+
+#form-consultar {
+	padding: 40px;
+	color: white;
+	font-weight: bold;
+	
+}    
 .jumbotron{
     background: #f0eff3;
     box-shadow: 3px 3px 0 #450;
@@ -66,14 +87,6 @@ h3{
 
 
 /*cadastro Editora, Autor*/
-
-#body-cadastro{
-	text-align: center;
-	font-family:cursive, monospace, sans-serif;
-	padding: 25px;
-	background: #000 url("https://images7.alphacoders.com/562/562640.jpg") no-repeat center bottom;
-	background-size: cover;
-}
 
 #form-cadastro{
 	color: white;
@@ -99,9 +112,3 @@ width: 100%;
 }
 
 
-#form-consultar {
-	padding: 40px;
-	color: white;
-	font-weight: bold;
-	
-}
