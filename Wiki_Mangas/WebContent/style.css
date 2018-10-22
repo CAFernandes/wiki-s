@@ -19,7 +19,6 @@
 	padding: 25px;
 	background: #000 url("https://images7.alphacoders.com/562/562640.jpg") no-repeat center bottom;
 	background-size: cover;
-	height: 760px;
 }
 #body-consultar {
 	text-align: center;
@@ -42,6 +41,7 @@
 	background: gray;
 	padding: 26px;
     background: #000 url("https://images4.alphacoders.com/904/904104.jpg") top center no-repeat;
+	background-size: cover;
 }
 b{
 	color: white;
@@ -78,15 +78,14 @@ h3{
 	color: white;
 	font-weight: bold;
 	
-}    
-.jumbotron{
-    background: #f0eff3;
-    box-shadow: 3px 3px 0 #450;
-   	background: #000 url("https://images7.alphacoders.com/881/881074.jpg") top center no-repeat;
 }
-
-
-/*cadastro Editora, Autor*/
+#form-alterar{
+	color: white;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
 
 #form-cadastro{
 	color: white;
@@ -94,6 +93,11 @@ h3{
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
+}
+.jumbotron{
+    background: #f0eff3;
+    box-shadow: 3px 3px 0 #450;
+   	background: #000 url("https://images7.alphacoders.com/881/881074.jpg") top center no-repeat;
 }
 
 

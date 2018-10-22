@@ -36,16 +36,15 @@
 
 		<div class="form-group col-md-6">
 			<label for="inputAutor">Autor</label> 
-			<select id="inputAutor"
-				class="form-control">
+			<select id="inputAutor" class="form-control">
 				<option selected></option>
 				<option>...</option>
 			</select>
 		</div>
 
 		<div class="form-group col-md-6">
-			<label for="inputEditora">Editora</label> <select id="inputEditora"
-				class="form-control">
+			<label for="inputEditora">Editora</label> 
+			<select id="inputEditora" class="form-control">
 				<option selected></option>
 				<option>...</option>
 			</select>
@@ -53,8 +52,8 @@
 
 
 		<div class="form-group col-md-4">
-			<label for="inputVolume">Volume</label> <select id="inputVolume"
-				class="form-control">
+			<label for="inputVolume">Volume</label> 
+			<select id="inputVolume" class="form-control">
 				<option selected></option>
 				<option value="1">1</option>
 				<option value="2">2</option>
@@ -64,8 +63,8 @@
 
 		<div class="form-group">
 			<div class="form-group col-md-4">
-				<label for="inputlancamento">Data de Lançamento</label> <input
-					type="text" class="form-control" id="inputlancamento">
+				<label for="inputlancamento">Data de Lançamento</label> 
+				<input type="text" class="form-control" id="inputlancamento">
 			</div>
 
 			<div class="form-group col-md-4">
@@ -82,11 +81,10 @@
 
 			<div class="form-group col-md-6">
 				<label for="inputLink">Link</label> 
-				<input type="text" class="form-control" id="inputlink">
+				<input type="url" class="form-control" id="inputlink">
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary btn-default">Cancelar</button>
 		<button type="submit" class="btn btn-primary btn-default">Cadastrar</button>
 
 	</form>

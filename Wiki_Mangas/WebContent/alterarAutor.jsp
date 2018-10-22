@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="model.User" import="javax.servlet.http.HttpSession"%>
+	pageEncoding="ISO-8859-1"%>
+<%@ page import="model.User, javax.servlet.http.HttpSession"%>
 
 <%
 	HttpSession sessao = request.getSession();
-	User userInfo = (User) sessao.getAttribute("LOGADO");
+	sessao.setAttribute("opc", 3);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,38 +21,27 @@
 </head>
 
 <body id="body-alterar">
-	<%
-		if (userInfo != null && userInfo.isLogado()) {
-	%>
 	<jsp:include page="menuAdmin.jsp"></jsp:include>
-	<%
-		} else {
-	%>
-	<jsp:include page="menuVisitante.jsp"></jsp:include>
-	<%
-		}
-	%>
 
-	<div class="container-fluid" style="margin-top: 80px"></div>
-
-	<h2>
-		<b>Alterar Autor</b>
-	</h2>
-
+	<div class="container-fluid" style="margin-top: 80px">
+		<h2>
+			<b>Alterar Autor</b>
+		</h2>
+	</div>
+	<%if(sessao.getAttribute("msg") != null){ %>
+	<div class="col-lg-12">
+		<h3 class="alert alert-primary"><%=sessao.getAttribute("msg") %></h3>
+	</div>
+	<% sessao.removeAttribute("msg");
+	} %>
 	<form id="form">
 		<div class="form-group col-md-6">
-			<label for="inputNome">Nome</label> <input type="text"
+			<label for="inputNome"><b>Nome</b></label> <input type="text"
 				class="form-control" id="inputNome">
 		</div>
 
-
-
-
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cancelar</button>
 		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
-
 	</form>
-
 
 </body>
 </html>

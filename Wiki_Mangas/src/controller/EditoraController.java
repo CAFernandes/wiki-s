@@ -78,7 +78,7 @@ public class EditoraController extends HttpServlet {
 		} catch (GenericDAOException e1) {
 			e1.printStackTrace();
 		}
-		response.sendRedirect("./cadastrarEditora.jsp");
+		response.sendRedirect("./consultaEditoras.jsp");
 	}
 
 	/*

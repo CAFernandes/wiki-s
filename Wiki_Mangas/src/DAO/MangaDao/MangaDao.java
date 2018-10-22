@@ -84,14 +84,9 @@ public class MangaDao implements DaoManga {
 	public List<Manga> listarTodosMangas() throws GenericDAOException {
 		String sql = "SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"
 				+ "m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m "
-				+ "INNER JOIN autor a  ON a.id = m.autor_id " + "INNER JOIN editora e ON e.codigo = m.editora_id"; // tem
-																													// que
-																													// fazer
-																													// um
-																													// inner
-																													// join
-																													// aqui
-
+				+ "INNER JOIN autor a  ON a.id = m.autor_id INNER JOIN editora e ON e.codigo = m.editora_id "
+				+ "ORDER BY m.id "; 
+	
 		List<Manga> mangas = new ArrayList<>();
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);

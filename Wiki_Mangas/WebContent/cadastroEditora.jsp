@@ -22,12 +22,11 @@
 		</h2>
 	</div>
 
-	<form id="form-cadastro" method="POST" action="./CadastroEditora">
+	<form id="form-cadastro" method="POST" action="./EditoraController">
 		<div class="form-group col-md-6">
 			<label for="inputNome">Editora</label> 
-			<input type="text" class="form-control" id="inputNome">
+			<input type="text" class="form-control" id="inputNome" name="editora">
 		</div>
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cancelar</button>
 		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
 	</form>
 </body>

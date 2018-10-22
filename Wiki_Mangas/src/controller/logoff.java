@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.User;
-
 @WebServlet(name = "logoff", urlPatterns = { "/logoff" })
 public class logoff extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,9 +19,9 @@ public class logoff extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		User uInfo = (User) session.getAttribute("LOGADO");
-		uInfo.setLogado(false);
-		session.setAttribute("LOGADO", uInfo);
+		if(session.getAttribute("LOGADO") != null) {
+			session.removeAttribute("LOGADO");
+		}
 		response.sendRedirect("./index.jsp");
 	}
 

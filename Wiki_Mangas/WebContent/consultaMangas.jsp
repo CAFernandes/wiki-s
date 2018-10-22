@@ -68,7 +68,8 @@
 			List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
 			if(list != null && list.size() > 0){ %>
 			<tbody>
-				<%for(Manga m : list) {%>
+				<%for(Manga m : list) {
+				%>
 					<tr>
 						<td><%= m.getTitulo() %></td>
 						<td><%= m.getGenero() %></td>
@@ -77,9 +78,9 @@
 						<td><%= m.getVolume() %></td>
 						<td><%= m.getDt_lancamento() %></td>
 						<td><%= m.getStatus() %></td>
-						<td><%= m.getLink() %></td>
+						<td><a href="<%= m.getLink() %>">Acesse Aqui</a></td>
 						<%if (userInfo != null && userInfo.isLogado()) { %>
-						<td><a href="./alterarMangas.jsp?id=<%= m.getId()%>">Editar</a></td>
+						<td><a href="./alterarMangas.jsp?id=<%=m.getId()%>">Editar</a></td>
 						<% } %>
 					</tr>
 				<% } %>

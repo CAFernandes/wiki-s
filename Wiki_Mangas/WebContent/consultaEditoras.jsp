@@ -29,19 +29,17 @@
 	<div class="container-fluid" style="margin-top: 80px">	
 		<h2> Lista de Editores </h2>
 	</div>
-	<%if(sessao.getAttribute("msg") != null && sessao.getAttribute("msg").equals("error")){ %>
+	<%if(sessao.getAttribute("msg") != null){ %>
 	<div class="col-lg-12">
-		<h3 class="alert alert-primary">Não foi localizado editora</h3>
+		<h3 class="alert alert-primary"><%=sessao.getAttribute("msg") %></h3>
 	</div>
 	<% sessao.removeAttribute("msg");
 	} %>
 	<form action="./EditoraController" method="POST">
 		<div class="form-group col-md-8 text-center input-group">
 			<div class="input-group-btn col-md-12 text-center">
-				<input type="text" class="form-control" id="editora" name="editora" 
-				placeholder="Pesquisar por Nome">
-				<button type="submit" name="cmd" class="btn btn-primary btn-default"
-					value="Pesquisar">Pesquisar</button>
+				<input type="text" class="form-control" id="editora" name="editora" placeholder="Pesquisar por Nome">
+				<button type="submit" name="cmd" class="btn btn-primary btn-default" value="Pesquisar">Pesquisar</button>
 			</div>
 		</div>
 		<table class="table table-striped">
@@ -49,9 +47,9 @@
 				<tr>
 					<th>Código</th>
 					<th>Editora</th>
-						<%if (userInfo != null && userInfo.isLogado()) {%>
-						<th>Ações</th>
-						<% } %>	
+					<%if (userInfo != null && userInfo.isLogado()) {%>
+					<th>Ações</th>
+					<% } %>	
 				</tr>
 			</thead>
 			<tbody>
@@ -71,7 +69,5 @@
 			</tbody>
 		</table>
 	</form>
-
-	
 </body>
 </html>
