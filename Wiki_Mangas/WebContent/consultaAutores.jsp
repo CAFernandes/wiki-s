@@ -73,7 +73,7 @@
 						<th><%=a.getNome() %></th>
 						<!-- Aqui eu válido o acesso para disponibilizar ações relacionadas ao autores -->
 						<%if (userInfo != null && userInfo.isLogado()) {%>
-						<th>EDITAR EXCLUIR</th>
+						<th><a href="./alterarAutor.jsp?id=<%=a.getId() %>">Editar</a></th>
 						<% } %>			
 					</tr>
 				<% } %>

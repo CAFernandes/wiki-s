@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="model.User, javax.servlet.http.HttpSession"%>
+<%@ page import="model.User, model.Autor, java.util.List, javax.servlet.http.HttpSession"%>
 
 <%
 	HttpSession sessao = request.getSession();
@@ -33,14 +33,20 @@
 		<h3 class="alert alert-primary"><%=sessao.getAttribute("msg") %></h3>
 	</div>
 	<% sessao.removeAttribute("msg");
-	} %>
-	<form id="form">
+	} 
+	List<Autor> list = (List<Autor>) sessao.getAttribute("AUTORES");
+	Autor a = list.get(Integer.parseInt(request.getParameter("id"))-1);
+	%>
+	<form id="form" action="./AutorController" method="post">
 		<div class="form-group col-md-6">
-			<label for="inputNome"><b>Nome</b></label> <input type="text"
-				class="form-control" id="inputNome">
+			<label for="inputNome"><b>Nome</b></label> 
+			<input name="id" type="number" class="form-control" readonly value="<%=a.getId()%>">
+			<input name="autor" type="text" class="form-control" id="inputNome"
+			value="<%=a.getNome()%>">
+			
 		</div>
 
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
+		<button type="submit" class="btn btn-primary btn-default">Alterar</button>
 	</form>
 
 </body>

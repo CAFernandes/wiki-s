@@ -25,14 +25,17 @@ public class UserDao implements iUserDao {
 
 	@Override
 	public User autenticar(User user) throws GenericDAOException {
-		String sql = "SELECT * FROM usuario WHERE usuario = ?";
+		String sql = "Select PWDCOMPARE(?, senha) AS valido FROM usuario WHERE usuario = ?";
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
-			ps.setString(1, user.getUser());
+			ps.setString(1, user.getsenha());
+			ps.setString(2, user.getUser());
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				user.setLogado(true);
+				if(rs.getInt("valido")==1) {
+					user.setLogado(true);
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

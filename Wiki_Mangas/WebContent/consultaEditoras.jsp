@@ -62,7 +62,7 @@
 						<th><%=e.getId() %></th>
 						<th><%=e.getEditora() %></th>
 						<%if (userInfo != null && userInfo.isLogado()) {%>
-						<th>EDITAR EXCLUIR</th>
+						<th><a href="./alterarEditora.jsp?id=<%=e.getId() %>">Editar</a></th>
 						<% } %>	
 					</tr>
 				<%} %>

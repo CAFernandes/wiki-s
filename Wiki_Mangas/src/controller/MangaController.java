@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -13,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import DAO.GenericDAOException;
+import DAO.Autor.AutorDao;
+import DAO.Editora.EditoraDao;
 import DAO.MangaDao.DaoManga;
 import DAO.MangaDao.MangaDao;
 import model.Autor;
@@ -32,6 +33,15 @@ public class MangaController extends HttpServlet {
     	DaoManga dManga;
 		dManga = new MangaDao();
 		listar(request, response, dManga);
+		int opc = (int) request.getSession().getAttribute("opc");
+		switch(opc) {
+			case(1):
+				break;
+			default:
+				listAutEdi(request, response);
+				break;
+			
+		}
     }
     
     /*No doPost recupero um identificador do front e determino qual a função deve ser executada*/
@@ -73,11 +83,7 @@ public class MangaController extends HttpServlet {
 		m.setVolume(Integer.parseInt(request.getParameter("volume")));
 		m.setStatus(request.getParameter("status"));
 		m.setLink(request.getParameter("link"));
-		try {
-			m.setDt_lancamento((new java.sql.Date(sdf.parse(request.getParameter("data")).getTime())));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
+		m.setDt_lancamento(request.getParameter("data"));
 		try {
 			dManga.adicionar(m);
 		} catch(GenericDAOException e1) {
@@ -88,7 +94,6 @@ public class MangaController extends HttpServlet {
 	}
 	/*nesta função eu solicito alguma alteração no registro do mangas no banco*/
 	private void alterar(HttpServletRequest request, HttpServletResponse response, DaoManga dManga, SimpleDateFormat sdf) throws NumberFormatException, IOException {
-		String id = request.getParameter("mangaid");
 		Manga m = new Manga();
 		Autor a = new Autor();
 		Editora e = new Editora();
@@ -102,14 +107,10 @@ public class MangaController extends HttpServlet {
 		m.setVolume(Integer.parseInt(request.getParameter("volume")));
 		m.setStatus(request.getParameter("status"));
 		m.setLink(request.getParameter("link"));
+		m.setDt_lancamento(request.getParameter("data"));
 		try {
-			m.setDt_lancamento((new java.sql.Date(sdf.parse(request.getParameter("data")).getTime())));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			dManga.alterar(Integer.parseInt(id), m);
-		} catch(GenericDAOException e1) {
+			dManga.alterar(m);
+		} catch (GenericDAOException e1) {
 			e1.printStackTrace();
 		}
 		response.sendRedirect("./consultaMangas.jsp");
@@ -122,9 +123,7 @@ public class MangaController extends HttpServlet {
 			
 			List<Manga> lista = dManga.listarTodosMangas(); 
 			sessao.setAttribute("MANGAS", lista); // coloca a lista na sessão para que a view tenha acesso a ela e possa exibir os dados da lista na tabela
-			for (Manga m : lista) {
-				m.getTitulo();
-			}
+
 		} catch(GenericDAOException e) {
 			e.printStackTrace();
 		}
@@ -163,6 +162,20 @@ public class MangaController extends HttpServlet {
 			e.printStackTrace();
 		}
 		response.sendRedirect("./consultaMangas.jsp");
-
+	}
+	private void listAutEdi(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession sessao = request.getSession();
+		try {
+			List<Autor> lista = new AutorDao().listarTodosAutores();
+			/* coloca a lista na sessão para que a view tenha acesso 
+			*  a ela e possa exibir os dados da lista na tabela
+			*/
+			sessao.setAttribute("AUTORES", lista); 
+			List<Editora> list = new EditoraDao().listarTodasEditoras();
+			sessao.setAttribute("EDITORAS", list); // coloca a lista na sessão para que a view tenha acesso a ela e possa exibir os dados da lista na tabela
+		} catch(GenericDAOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }

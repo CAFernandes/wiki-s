@@ -91,9 +91,10 @@ public class AutorController extends HttpServlet {
 		Autor a = new Autor();
 
 		a.setNome(request.getParameter("nome"));
-
+		a.setId(Integer.parseInt(request.getParameter("id")));
+		System.out.println(a.getNome() +" "+ a.getId());
 		try {
-			dAutor.alterar(Integer.parseInt(id), a);
+			dAutor.alterar(a);
 			msg = "Autor alterado com sucesso!";
 		} catch (GenericDAOException e) {
 			e.printStackTrace();

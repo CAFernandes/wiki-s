@@ -76,12 +76,12 @@ public class EditoraDao implements DaoEditora {
 	}
 
 	@Override
-	public void alterar(int id, Editora e) throws GenericDAOException {
+	public void alterar(Editora e) throws GenericDAOException {
 		String sql = "UPDATE editora SET editora = ? WHERE id = ?";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
-			ps.setInt(1, e.getId());
-			ps.setString(2, e.getEditora());
+			ps.setString(1, e.getEditora());
+			ps.setInt(2, e.getId());
 			ps.executeUpdate();
 		} catch (SQLException e1) {
 			e1.printStackTrace();

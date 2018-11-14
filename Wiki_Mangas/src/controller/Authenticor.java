@@ -22,7 +22,7 @@ public class Authenticor extends HttpServlet {
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession sessao = request.getSession();
+		HttpSession sessao = request.getSession();// identifica a sessao que o usuário está acessado
 		User user = new User(request.getParameter("user"), request.getParameter("senha"));
 		try {
 			user = new UserDao().autenticar(user);

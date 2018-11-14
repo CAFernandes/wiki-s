@@ -45,7 +45,7 @@ public class MangaDao implements DaoManga {
 	@Override
 	public List<Manga> pesquisarPorNome(String titulo) throws GenericDAOException {
 		String sql = "SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"
-				+ "m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m "
+				+ "m.volume, convert(char(10), m.dt_lancamento, 103) AS data_publicacao, m.status, m.link FROM manga m "
 				+ "INNER JOIN autor a  ON a.id = m.autor_id "
 				+ "INNER JOIN editora e ON e.codigo = m.editora_id WHERE titulo like ?"; // tem que ter um inner join
 																							// aqui
@@ -69,7 +69,7 @@ public class MangaDao implements DaoManga {
 				m.setTitulo(rs.getString("titulo"));
 				m.setGenero(rs.getString("genero"));
 				m.setVolume(rs.getInt("volume"));
-				m.setDt_lancamento(rs.getDate("dt_lancamento"));
+				m.setDt_lancamento(rs.getString("dt_lancamento"));
 				m.setStatus(rs.getString("status"));
 				m.setLink(rs.getString("link"));
 				mangas.add(m);
@@ -83,7 +83,7 @@ public class MangaDao implements DaoManga {
 	@Override
 	public List<Manga> listarTodosMangas() throws GenericDAOException {
 		String sql = "SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"
-				+ "m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m "
+				+ "m.volume, convert(char(10), m.dt_lancamento, 103) as data_publicacao, m.status, m.link FROM manga m "
 				+ "INNER JOIN autor a  ON a.id = m.autor_id INNER JOIN editora e ON e.codigo = m.editora_id "
 				+ "ORDER BY m.id "; 
 	
@@ -106,7 +106,7 @@ public class MangaDao implements DaoManga {
 				m.setTitulo(rs.getString("titulo"));
 				m.setGenero(rs.getString("genero"));
 				m.setVolume(rs.getInt("volume"));
-				m.setDt_lancamento(rs.getDate("data_publicacao"));
+				m.setDt_lancamento(rs.getString("data_publicacao"));
 				m.setStatus(rs.getString("status"));
 				m.setLink(rs.getString("link"));
 				mangas.add(m);
@@ -130,20 +130,20 @@ public class MangaDao implements DaoManga {
 	}
 
 	@Override
-	public void alterar(int id, Manga m) throws GenericDAOException {
+	public void alterar(Manga m) throws GenericDAOException{
 		String sql = "UPDATE manga " + "SET autor_id = ?, editora_id = ?, titulo = ?, genero = ?, volume = ?, "
 				+ "dt_lancamento = ?, status = ?, link = ? WHERE id = ?";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
-			ps.setInt(1, m.getId());
-			ps.setInt(2, m.getAutor().getId());
-			ps.setInt(3, m.getEditora().getId());
-			ps.setString(4, m.getTitulo());
-			ps.setString(5, m.getGenero());
-			ps.setInt(6, m.getVolume());
-			ps.setDate(7, m.getDt_lancamento());
-			ps.setString(8, m.getStatus());
-			ps.setString(9, m.getLink());
+			ps.setInt(1, m.getAutor().getId());
+			ps.setInt(2, m.getEditora().getId());
+			ps.setString(3, m.getTitulo());
+			ps.setString(4, m.getGenero());
+			ps.setInt(5, m.getVolume());
+			ps.setDate(6, m.getDt_lancamento());
+			ps.setString(7, m.getStatus());
+			ps.setString(8, m.getLink());
+			ps.setInt(9, m.getId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

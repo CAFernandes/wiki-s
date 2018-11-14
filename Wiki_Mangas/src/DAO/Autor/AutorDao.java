@@ -76,7 +76,7 @@ public class AutorDao implements DaoAutor {
 	}
 
 	@Override
-	public void alterar(int id, Autor a) throws GenericDAOException {
+	public void alterar(Autor a) throws GenericDAOException {
 		String sql = "UPDATE autor SET nome = ? WHERE id = ?";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);

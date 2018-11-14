@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="model.Manga, javax.servlet.http.HttpSession, java.util.List"%>
+<%@ page import="model.Manga, model.Autor, model.Editora, javax.servlet.http.HttpSession, java.util.List"%>
 <%
 	HttpSession sessao = request.getSession();
 	sessao.setAttribute("opc", 3);
@@ -34,44 +34,54 @@
 	List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
 	Manga m = list.get(Integer.parseInt(request.getParameter("id"))-1);
 	%>
-	
-	<form id="form-alterar">
+	<jsp:include page="./MangaController"></jsp:include>
+	<form id="form-alterar" action="./MangaController" method="post">
 		<div class="form-group">
 			<div class="form-group col-md-6">
 				<label for="inputTitulo"><b>Título</b></label>
-				<input type="text" class="form-control" id="inputTitulo" value="<%= m.getTitulo() %>">
+				<input name="titulo" type="text" class="form-control" id="inputTitulo" value="<%= m.getTitulo() %>">
 			</div>
 			<div class="form-group col-md-6">
 				<label for="inputGenero"><b>Gênero</b></label> 
-				<input type="text" class="form-control" id="inputGenero" value="<%= m.getGenero()%>">
+				<input name="genero" type="text" class="form-control" id="inputGenero" value="<%= m.getGenero()%>">
 			</div>
 		</div>
 		<div class="form-group col-md-6">
 			<label for="inputAutor"><b>Autor</b></label>
-			<select id="inputAutor" class="form-control">
+			<select name="autor" id="inputAutor" class="form-control">
 				<option selected><%=m.getAutor().getNome() %></option>
-				<option>...</option>
+				<% 
+					List<Autor> listA = (List<Autor>) sessao.getAttribute("AUTORES");
+					for(Autor a : listA){
+				%>
+					<option><%=a.getNome() %></option>
+				<% }%>
 			</select>
 		</div>
 		<div class="form-group col-md-6">
 			<label id="campo" for="inputEditora"><b>Editora</b></label> 
-			<select id="inputEditora" class="form-control">
+			<select name="editora" id="inputEditora" class="form-control">
 				<option selected><%= m.getEditora().getEditora() %></option>
-				<option>...</option>
+				<% 
+					List<Editora> listE = (List<Editora>) sessao.getAttribute("EDITORAS");
+					for(Editora e : listE){
+				%>
+					<option><%=e.getEditora()%></option>
+				<% }%>
 			</select>
 		</div>
 		<div class="form-group col-md-4">
 			<label for="inputVolume"><b>Volume</b></label> 
-			<input type="number" class="form-control" name="volume" min="1">
+			<input type="number" class="form-control" name="volume" min="1" value="<%=m.getVolume()%>">
 		</div>
 		<div class="form-group">
 			<div class="form-group col-md-4">
 				<label for="inputlancamento"><b>Data de Lançamento</b></label> 
-				<input type="text" class="form-control" id="inputlancamento" value="<%= m.getDt_lancamento() %>">
+				<input name="data" type="text" class="form-control" id="inputlancamento" value="<%= m.getDt_lancamento() %>">
 			</div>
 			<div class="form-group col-md-4">
 				<label for="inputState"><b>Status</b></label>
-				<select id="inputStatus" class="form-control">
+				<select name="status" id="inputStatus" class="form-control">
 					<option selected><%= m.getStatus() %></option>
 					<option>Em Andamento</option>
 					<option>Completo</option>
@@ -82,11 +92,11 @@
 
 			<div class="form-group col-md-6">
 				<label for="inputLink"><b>Link</b></label> 
-				<input type="url" class="form-control" id="inputlink" value="<%=m.getLink()%>">
+				<input name="link" type="url" class="form-control" id="inputlink" value="<%=m.getLink()%>">
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-primary btn-default">Cadastrar</button>
+		<button type="submit" class="btn btn-primary btn-default">Alterar</button>
 
 	</form>
 

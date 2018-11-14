@@ -88,14 +88,13 @@ public class EditoraController extends HttpServlet {
 	private void alterar(HttpServletRequest request, HttpServletResponse response, DaoEditora dEditora)
 			throws NumberFormatException, IOException {
 		HttpSession sessao = request.getSession();
-		String id = request.getParameter("editoraid");
 
 		Editora e = new Editora();
 
 		e.setEditora(request.getParameter("editora"));
-
+		e.setId(Integer.parseInt(request.getParameter("id")));
 		try {
-			dEditora.alterar(Integer.parseInt(id), e);
+			dEditora.alterar(e);
 			List<Editora> lista = dEditora.listarTodasEditoras();
 			sessao.setAttribute("EDITORAS", lista);
 		} catch (GenericDAOException e1) {

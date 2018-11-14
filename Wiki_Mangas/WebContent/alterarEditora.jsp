@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="model.User, javax.servlet.http.HttpSession"%>
+<%@ page import="model.User, model.Editora, java.util.List, javax.servlet.http.HttpSession"%>
 <%
 	HttpSession sessao = request.getSession();
 	sessao.setAttribute("opc", 3);
@@ -31,14 +31,17 @@
 		<h3 class="alert alert-primary"><%=sessao.getAttribute("msg") %></h3>
 	</div>
 	<% sessao.removeAttribute("msg");
-	} %>
-	<form id="form">
+	} 
+	List<Editora> list = (List<Editora>) sessao.getAttribute("EDITORAS");
+	Editora e = list.get(Integer.parseInt(request.getParameter("id"))-1);%>
+	<form id="form" action="./EditoraController" method="post">
 		<div class="form-group col-md-6">
 		      <label for="inputNome"><b>Editora</b></label>
-		      <input type="text" class="form-control" id="inputNome">
+		      <input name="editora" type="text" class="form-control" id="inputNome"
+		      value="<%=e.getEditora() %>">
 		</div>
 		
-		<button id="submit" type="button" class="btn btn-primary btn-default" >Cadastrar</button>
+		<button id="submit" type="submit" class="btn btn-primary btn-default" >Alterar</button>
 	</form>
 </body>
 </html>

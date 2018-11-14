@@ -10,6 +10,6 @@ public interface DaoManga {
 	List<Manga> pesquisarPorNome(String titulo) throws GenericDAOException;
 	List<Manga> listarTodosMangas() throws GenericDAOException;
 	void remover(int id) throws GenericDAOException;
-	void alterar(int id, Manga m) throws GenericDAOException;
+	void alterar(Manga m) throws GenericDAOException;
 
 }
