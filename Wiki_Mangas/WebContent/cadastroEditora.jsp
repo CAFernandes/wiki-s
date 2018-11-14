@@ -27,7 +27,7 @@
 			<label for="inputNome">Editora</label> 
 			<input type="text" class="form-control" id="inputNome" name="editora">
 		</div>
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
+		<button id="submit" type="submit" class="btn btn-primary btn-default">Cadastrar</button>
 	</form>
 </body>
 </html>

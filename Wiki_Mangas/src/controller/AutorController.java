@@ -78,8 +78,9 @@ public class AutorController extends HttpServlet {
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
 		}
-		sessao.setAttribute("MENSAGEM", msg);
-	}
+		sessao.setAttribute("msg", msg);
+		listar(request, response, dAutor);
+		}
 
 	/*
 	 * nesta função eu solicito alguma alteração registro de autor no banco através
@@ -87,12 +88,10 @@ public class AutorController extends HttpServlet {
 	private void alterar(HttpServletRequest request, HttpServletResponse response, DaoAutor dAutor) throws IOException {
 		String msg = null;
 		HttpSession sessao = request.getSession();
-		String id = request.getParameter("id");
 		Autor a = new Autor();
 
-		a.setNome(request.getParameter("nome"));
+		a.setNome(request.getParameter("autor"));
 		a.setId(Integer.parseInt(request.getParameter("id")));
-		System.out.println(a.getNome() +" "+ a.getId());
 		try {
 			dAutor.alterar(a);
 			msg = "Autor alterado com sucesso!";
@@ -100,8 +99,8 @@ public class AutorController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		sessao.setAttribute("MENSAGEM", msg);
-		response.sendRedirect("./consultaAutores.jsp");
+		sessao.setAttribute("msg", msg);
+		listar(request, response, dAutor);
 	}
 
 	/* Esta função eu listo todos autores sem nem um filtro */

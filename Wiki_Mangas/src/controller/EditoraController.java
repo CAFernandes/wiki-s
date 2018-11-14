@@ -69,16 +69,17 @@ public class EditoraController extends HttpServlet {
 			throws IOException {
 		HttpSession sessao = request.getSession();
 		Editora e = new Editora();
+		String msg = null;
 
 		e.setEditora(request.getParameter("editora"));
 		try {
 			dEditora.adicionar(e);
-			List<Editora> lista = dEditora.listarTodasEditoras();
-			sessao.setAttribute("EDITORAS", lista);
+			msg="Editora cadastrado com Sucesso";
 		} catch (GenericDAOException e1) {
 			e1.printStackTrace();
 		}
-		response.sendRedirect("./consultaEditoras.jsp");
+		sessao.setAttribute("msg", msg);
+		listar(request, response, dEditora);
 	}
 
 	/*
@@ -88,20 +89,19 @@ public class EditoraController extends HttpServlet {
 	private void alterar(HttpServletRequest request, HttpServletResponse response, DaoEditora dEditora)
 			throws NumberFormatException, IOException {
 		HttpSession sessao = request.getSession();
-
+		String msg = null;
 		Editora e = new Editora();
 
 		e.setEditora(request.getParameter("editora"));
 		e.setId(Integer.parseInt(request.getParameter("id")));
 		try {
 			dEditora.alterar(e);
-			List<Editora> lista = dEditora.listarTodasEditoras();
-			sessao.setAttribute("EDITORAS", lista);
+			msg="Editora alterada com sucesso";
 		} catch (GenericDAOException e1) {
 			e1.printStackTrace();
 		}
-
-		response.sendRedirect("./alterarEditora.jsp");
+		sessao.setAttribute("msg", msg);
+		listar(request, response, dEditora);
 	}
 
 	/* Esta função eu listo todas editoras sem nem um filtro */
@@ -132,6 +132,7 @@ public class EditoraController extends HttpServlet {
 				listar(request, response, dEditora);// e listo as editoras novamente sem busca por nome
 			} else {
 				sessao.setAttribute("EDITORAS", lista);
+				sessao.setAttribute("msg", "Foram encontrado "+lista.size()+" resultados");
 				response.sendRedirect("./consultaAutores.jsp");
 			}
 		} catch (GenericDAOException e) {

@@ -26,7 +26,7 @@
 			<label for="inputNome" style="color: white">Nome</label> 
 			<input type="text" name="nome" class="form-control" id="inputNome">
 		</div>
-		<button id="submit" type="button" class="btn btn-primary btn-default">Cadastrar</button>
+		<button id="submit" type="submit" class="btn btn-primary btn-default">Cadastrar</button>
 	</form>
 </body>
 </html>

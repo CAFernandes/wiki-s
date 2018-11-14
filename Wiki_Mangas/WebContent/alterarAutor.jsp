@@ -39,14 +39,16 @@
 	%>
 	<form id="form" action="./AutorController" method="post">
 		<div class="form-group col-md-6">
-			<label for="inputNome"><b>Nome</b></label> 
+			<label for="id"><b>Id</b></label>
 			<input name="id" type="number" class="form-control" readonly value="<%=a.getId()%>">
+			<label for="inputNome"><b>Nome</b></label> 
 			<input name="autor" type="text" class="form-control" id="inputNome"
 			value="<%=a.getNome()%>">
-			
 		</div>
-
-		<button type="submit" class="btn btn-primary btn-default">Alterar</button>
+		<div class="form-group col-md-4">
+			<button type="submit" class="btn btn-primary btn-default">Alterar</button>
+		</div>
+		
 	</form>
 
 </body>
