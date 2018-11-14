@@ -1,9 +1,6 @@
 package model;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
+import java.util.Date;
 
 public class Manga {
 	private int id;
@@ -52,13 +49,15 @@ public class Manga {
 		return dt_lancamento;
 	}
 	
-	public void setDt_lancamento(String dt_lancamento) {
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			this.dt_lancamento = (new java.sql.Date(sdf.parse(dt_lancamento).getTime()));
-		} catch (ParseException | java.text.ParseException e1) {
-			e1.printStackTrace();
-		}
+	public void setDt_lancamento(Date dt_lancamento) {
+
+		this.dt_lancamento = dt_lancamento;
+//		try {
+//			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//			this.dt_lancamento = (new java.sql.Date(sdf.parse(dt_lancamento).getTime()));
+//		} catch (ParseException | java.text.ParseException e1) {
+//			e1.printStackTrace();
+//		}
 
 	}
 	

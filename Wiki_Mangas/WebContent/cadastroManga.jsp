@@ -21,14 +21,13 @@
 </head>
 <body id="body-cadastro" style="height: 1000px">
 	<jsp:include page="menuAdmin.jsp"></jsp:include>
-	<jsp:include page="./MangaController"></jsp:include>
 	<div class="container-fluid" style="margin-top: 80px">
 		<h2 style="color: white">
 			<b>Cadastro de Mangás</b>
 		</h2>
 	</div>
 
-	<form id="form-cadastro" method="POST" action="./MangasController">
+	<form id="form-cadastro" method="POST" action="./MangaController">
 		<div class="form-group">
 			<div class="form-group col-md-6">
 				<label for="inputTitulo">Título</label> 
@@ -39,7 +38,7 @@
 				<input name="genero" type="text" class="form-control" id="inputGenero">
 			</div>
 		</div>
-
+		<jsp:include page="./MangaController"></jsp:include>
 		<div class="form-group col-md-6">
 			<label for="inputAutor">Autor</label> 
 			<select name="autor" id="inputAutor" class="form-control">
@@ -47,9 +46,9 @@
 					List<Autor> listA = (List<Autor>) sessao.getAttribute("AUTORES");
 					for(Autor a : listA){
 						if(a.getId() == 1){ %>
-							<option select><%=a.getNome() %></option>
+							<option select value="<%=a.getId()%>"><%=a.getNome() %></option>
 						<% }else{ %>
-							<option><%=a.getNome() %></option>
+							<option value="<%=a.getId()%>"><%=a.getNome() %></option>
 						<% }
 					}%>
 			</select>
@@ -62,9 +61,9 @@
 					List<Editora> listE = (List<Editora>) sessao.getAttribute("EDITORAS");
 					for(Editora e : listE){
 						if(e.getId() == 1){ %>
-							<option select><%=e.getEditora() %></option>
+							<option select value="<%=e.getId()%>"><%=e.getEditora() %></option>
 						<% }else{ %>
-							<option><%=e.getEditora() %></option>
+							<option value="<%=e.getId()%>"><%=e.getEditora() %></option>
 						<% }
 					}%>
 			</select>

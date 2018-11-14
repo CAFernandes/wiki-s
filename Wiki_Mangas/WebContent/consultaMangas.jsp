@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List, model.Manga, model.User, javax.servlet.http.HttpSession"%>
+<%@ page import="java.util.List, java.text.SimpleDateFormat, model.Manga, model.User, javax.servlet.http.HttpSession"%>
 
 <%
 	HttpSession sessao = request.getSession();
@@ -49,6 +49,7 @@
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
+					<th>Id</th>
 					<th>Título</th>
 					<th>Gênero</th>
 					<th>Autor</th>
@@ -63,24 +64,26 @@
 				</tr>
 			</thead>
 			<% if(sessao.getAttribute("MANGAS") == null){ %>	
-				<jsp:include page="/MangaController"/>			
+				<jsp:include page="./MangaController"/>			
 			<% }
 			List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			if(list != null && list.size() > 0){ %>
 			<tbody>
 				<%for(Manga m : list) {
 				%>
 					<tr>
+						<td><%= m.getId() %>
 						<td><%= m.getTitulo() %></td>
 						<td><%= m.getGenero() %></td>
 						<td><%= m.getAutor().getNome() %></td>
 						<td><%= m.getEditora().getEditora() %></td>
 						<td><%= m.getVolume() %></td>
-						<td><%= m.getDt_lancamento() %></td>
+						<td><%= sdf.format(m.getDt_lancamento())%></td>
 						<td><%= m.getStatus() %></td>
 						<td><a href="<%= m.getLink() %>">Acesse Aqui</a></td>
 						<%if (userInfo != null && userInfo.isLogado()) { %>
-						<td><a href="./alterarMangas.jsp?id=<%=m.getId()%>">Editar</a></td>
+						<td><a href="./MangaController?id=<%=m.getId()%>">Editar</a></td>
 						<% } %>
 					</tr>
 				<% } %>

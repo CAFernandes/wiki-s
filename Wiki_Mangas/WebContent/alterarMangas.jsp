@@ -38,6 +38,10 @@
 	<form id="form-alterar" action="./MangaController" method="post">
 		<div class="form-group">
 			<div class="form-group col-md-6">
+				<label for="inputTitulo"><b>ID</b></label>
+				<input name="titulo" type="text" class="form-control" id="inputTitulo" value="<%= m.getId() %>">
+			</div>
+			<div class="form-group col-md-6">
 				<label for="inputTitulo"><b>Título</b></label>
 				<input name="titulo" type="text" class="form-control" id="inputTitulo" value="<%= m.getTitulo() %>">
 			</div>
@@ -54,7 +58,7 @@
 					List<Autor> listA = (List<Autor>) sessao.getAttribute("AUTORES");
 					for(Autor a : listA){
 				%>
-					<option><%=a.getNome() %></option>
+					<option value="<%=a.getId()%>"><%=a.getNome() %></option>
 				<% }%>
 			</select>
 		</div>
@@ -66,7 +70,7 @@
 					List<Editora> listE = (List<Editora>) sessao.getAttribute("EDITORAS");
 					for(Editora e : listE){
 				%>
-					<option><%=e.getEditora()%></option>
+					<option value="<%=e.getId()%>"><%=e.getEditora()%></option>
 				<% }%>
 			</select>
 		</div>
