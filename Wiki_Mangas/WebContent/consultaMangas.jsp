@@ -83,7 +83,7 @@
 						<td><%= m.getStatus() %></td>
 						<td><a href="<%= m.getLink() %>">Acesse Aqui</a></td>
 						<%if (userInfo != null && userInfo.isLogado()) { %>
-						<td><a href="./MangaController?id=<%=m.getId()%>">Editar</a></td>
+						<td><a href="./alterarMangas.jsp?id=<%=m.getId()%>">Editar</a></td>
 						<% } %>
 					</tr>
 				<% } %>

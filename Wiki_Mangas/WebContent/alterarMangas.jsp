@@ -25,21 +25,28 @@
 			<b>Alterar Mangá</b>
 		</h2>
 	</div>
-	<%if(sessao.getAttribute("msg") != null){ %>
+	<%
+	List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
+	Manga m = null;
+	for(Manga ml : list){
+		if((Integer.parseInt(request.getParameter("id"))) == ml.getId()){
+			m = ml;
+		} 
+	}
+	if(sessao.getAttribute("msg") != null){ %>
 	<div class="col-lg-12">
 		<h3 class="alert alert-primary"><%=sessao.getAttribute("msg") %></h3>
 	</div>
 	<% sessao.removeAttribute("msg");
 	}
-	List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
-	Manga m = list.get(Integer.parseInt(request.getParameter("id"))-1);
+	
 	%>
 	<jsp:include page="./MangaController"></jsp:include>
 	<form id="form-alterar" action="./MangaController" method="post">
 		<div class="form-group">
 			<div class="form-group col-md-6">
 				<label for="inputTitulo"><b>ID</b></label>
-				<input name="titulo" type="text" class="form-control" id="inputTitulo" value="<%= m.getId() %>">
+				<input name="id" type="text" class="form-control" value="<%= m.getId() %>" readonly>
 			</div>
 			<div class="form-group col-md-6">
 				<label for="inputTitulo"><b>Título</b></label>
@@ -53,7 +60,7 @@
 		<div class="form-group col-md-6">
 			<label for="inputAutor"><b>Autor</b></label>
 			<select name="autor" id="inputAutor" class="form-control">
-				<option selected><%=m.getAutor().getNome() %></option>
+				<option selected value="<%=m.getAutor().getId()%>"><%=m.getAutor().getNome() %></option>
 				<% 
 					List<Autor> listA = (List<Autor>) sessao.getAttribute("AUTORES");
 					for(Autor a : listA){
@@ -65,7 +72,7 @@
 		<div class="form-group col-md-6">
 			<label id="campo" for="inputEditora"><b>Editora</b></label> 
 			<select name="editora" id="inputEditora" class="form-control">
-				<option selected><%= m.getEditora().getEditora() %></option>
+				<option selected value="<%=m.getEditora().getId()%>"><%= m.getEditora().getEditora() %></option>
 				<% 
 					List<Editora> listE = (List<Editora>) sessao.getAttribute("EDITORAS");
 					for(Editora e : listE){

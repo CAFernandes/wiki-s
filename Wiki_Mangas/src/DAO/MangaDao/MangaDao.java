@@ -133,8 +133,10 @@ public class MangaDao implements DaoManga {
 
 	@Override
 	public void alterar(Manga m) throws GenericDAOException{
-		String sql = "UPDATE manga " + "SET autor_id = ?, editora_id = ?, titulo = ?, genero = ?, volume = ?, "
-				+ "dt_lancamento = ?, status = ?, link = ? WHERE id = ?";
+		String sql = "UPDATE manga " + 
+				" SET autor_id = ?, editora_id = ? , titulo  = ? , genero = ?, " + 
+				" volume = ?, dt_lancamento = ?, status = ?, link = ?" + 
+				" WHERE manga.id = ? ";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, m.getAutor().getId());

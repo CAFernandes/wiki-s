@@ -105,11 +105,12 @@ public class MangaController extends HttpServlet {
 		Autor a = new Autor();
 		Editora e = new Editora();
 		
+		m.setId(Integer.parseInt(request.getParameter("id")));
 		m.setTitulo(request.getParameter("titulo"));
 		m.setGenero(request.getParameter("genero"));
-		a.setNome(request.getParameter("autor"));
+		a.setId(Integer.parseInt(request.getParameter("autor")));
 		m.setAutor(a);
-		e.setEditora(request.getParameter("editora"));
+		e.setId(Integer.parseInt(request.getParameter("editora")));
 		m.setEditora(e);
 		m.setVolume(Integer.parseInt(request.getParameter("volume")));
 		m.setStatus(request.getParameter("status"));
@@ -117,7 +118,7 @@ public class MangaController extends HttpServlet {
 		try {
 			Date d = sdf.parse(request.getParameter("data"));
 			m.setDt_lancamento(d);
-
+			
 			dManga.alterar(m);
 		} catch (GenericDAOException e1) {
 			e1.printStackTrace();
