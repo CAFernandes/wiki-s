@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 import DAO.GenericDAOException;
 import DAO.connection.GenericDao;
 import model.User;
@@ -24,7 +26,7 @@ public class UserDao implements iUserDao {
 
 	@Override
 	public User autenticar(User user) throws GenericDAOException {
-		String sql = "select aes_decrypt(senha, ?) as valido from usuario WHERE usuario = ?";
+		String sql = "select aes_decrypt(senha, ?) as `valido` from `usuario` WHERE `usuario` = ?";
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
@@ -32,6 +34,7 @@ public class UserDao implements iUserDao {
 			ps.setString(2, user.getUser());
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
+				JOptionPane.showMessageDialog(null, rs.getString("valido"));
 				if(rs.getString("valido").equals("admin")) {
 					user.setLogado(true);
 				}

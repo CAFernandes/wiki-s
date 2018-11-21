@@ -28,9 +28,8 @@ public class MangaDao implements DaoManga {
 
 	@Override
 	public void adicionar(Manga m) throws GenericDAOException {
-		String sql = "INSERT INTO manga(autor_id, editora_id, titulo, genero, "
-				+ "volume, dt_lancamento, estado, link) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO `manga`(`autor_id`, `editora_id`, `titulo`, `genero`, "
+				+ "`volume`, `dt_lancamento`, `estado`, `link`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, m.getAutor().getId());
@@ -50,14 +49,12 @@ public class MangaDao implements DaoManga {
 
 	@Override
 	public List<Manga> pesquisarPorNome(String titulo) throws GenericDAOException {
-		String sql = "select a.nome, e.editora, m.titulo, m.genero, m.volume, "+ 
-				"m.dt_lancamento as data_publicacao, m.estado, m.link " + 
-				"from manga m " + 
-				"inner join autor a " + 
-				"on a.id = m.autor_id " + 
-				"inner join editora e " + 
-				"on e.codigo = m.editora_id " + 
-				"WHERE m.titulo LIKE ?"; 
+		String sql = "select `autor`.`nome`, `editora`.`editora`, `manga`.`titulo`, "
+				+ "`manga`.`genero`, `manga`.`volume`, `manga`.`dt_lancamento` AS  "
+				+ "`data_publicacao`, `manga`.`estado`, `manga`.`link` from `manga` "
+				+ "inner join `autor` on `autor`.`id` = `manga`.`autor_id` "
+				+ "inner join `editora` on `editora`.`codigo` = `manga`.`editora_id` "
+				+ "WHERE manga.titulo LIKE ?";
 		List<Manga> mangas = new ArrayList<>();
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -90,14 +87,12 @@ public class MangaDao implements DaoManga {
 
 	@Override
 	public List<Manga> listarTodosMangas() throws GenericDAOException {
-		String sql = "select a.nome, e.editora, m.titulo, m.genero, m.volume,"+ 
-				"m.dt_lancamento as data_publicacao, m.estado, m.link " + 
-				"from manga m " + 
-				"inner join autor a " + 
-				"on a.id = m.autor_id " + 
-				"inner join editora e " + 
-				"on e.codigo = m.editora_id"; 
-	
+		String sql = "select `autor`.`nome`, `editora`.`editora`, `manga`.`titulo`, "
+				+ "`manga`.`genero`, `manga`.`volume`, `manga`.`dt_lancamento` AS  "
+				+ "`data_publicacao`, `manga`.`estado`, `manga`.`link` from `manga` "
+				+ "inner join `autor` on `autor`.`id` = `manga`.`autor_id` "
+				+ "inner join `editora` on `editora`.`codigo` = `manga`.`editora_id`";
+
 		List<Manga> mangas = new ArrayList<>();
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -141,11 +136,9 @@ public class MangaDao implements DaoManga {
 	}
 
 	@Override
-	public void alterar(Manga m) throws GenericDAOException{
-		String sql = "UPDATE manga " + 
-				" SET autor_id = ?, editora_id = ? , titulo  = ? , genero = ?, " + 
-				" volume = ?, dt_lancamento = ?, status = ?, link = ?" + 
-				" WHERE id = ? ";
+	public void alterar(Manga m) throws GenericDAOException {
+		String sql = "UPDATE `manga` " + " SET `autor_id` = ?, `editora_id` = ? , `titulo`  = ? , `genero` = ?, "
+				+ " volume = `?` , dt_lancamento = `?` , status = `?` , link = `?` " + " WHERE id = `?` ";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, m.getAutor().getId());
