@@ -7,7 +7,6 @@ import java.sql.SQLException;
 
 import DAO.GenericDAOException;
 import DAO.connection.GenericDao;
-import DAO.connection.iGenericDao;
 import model.User;
 
 public class UserDao implements iUserDao {
@@ -15,9 +14,9 @@ public class UserDao implements iUserDao {
 	private Connection connection;
 	
 	public UserDao () {
-		iGenericDao gDao = new GenericDao();
+		GenericDao gDao = new GenericDao();
 		try {
-			setConnection(gDao.getConnection());
+			connection = gDao.getConnection();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -25,7 +24,7 @@ public class UserDao implements iUserDao {
 
 	@Override
 	public User autenticar(User user) throws GenericDAOException {
-		String sql = "SELECT PWDCOMPARE(?, senha) AS valido FROM usuario WHERE usuario = ?";
+		String sql = "select aes_decrypt(senha, ?) as valido from usuario WHERE usuario = ?";
 		PreparedStatement ps;
 		try {
 			ps = connection.prepareStatement(sql);
@@ -33,7 +32,7 @@ public class UserDao implements iUserDao {
 			ps.setString(2, user.getUser());
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				if(rs.getInt("valido")==1) {
+				if(rs.getString("valido").equals("admin")) {
 					user.setLogado(true);
 				}
 			}

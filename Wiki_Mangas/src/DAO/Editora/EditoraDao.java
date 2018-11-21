@@ -16,12 +16,16 @@ public class EditoraDao implements DaoEditora {
 
 	public EditoraDao() {
 		GenericDao gDao = new GenericDao();
-		c = gDao.getConnection();
+		try {
+			c = gDao.getConnection();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void adicionar(Editora e) throws GenericDAOException {
-		String sql = "INSERT INTO editora VALUES (?)";
+		String sql = "INSERT INTO `editora`(`editora`) VALUES (?)";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, e.getEditora());
@@ -33,7 +37,7 @@ public class EditoraDao implements DaoEditora {
 
 	@Override
 	public List<Editora> pesquisarPorNome(String editora) throws GenericDAOException {
-		String sql = "SELECT * FROM editora WHERE  editora like ?";
+		String sql = "SELECT * FROM `editora` WHERE `editora` like ?";
 
 		List<Editora> editoras = new ArrayList<>();
 		try {
@@ -55,7 +59,7 @@ public class EditoraDao implements DaoEditora {
 
 	@Override
 	public List<Editora> listarTodasEditoras() throws GenericDAOException {
-		String sql = "SELECT * FROM editora";
+		String sql = "SELECT * FROM `editora`";
 
 		List<Editora> editoras = new ArrayList<>();
 		try {
@@ -77,7 +81,7 @@ public class EditoraDao implements DaoEditora {
 
 	@Override
 	public void alterar(Editora e) throws GenericDAOException {
-		String sql = "UPDATE editora SET editora = ? WHERE id = ?";
+		String sql = "UPDATE `editora` SET `editora`= ? WHERE codigo = ?";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, e.getEditora());

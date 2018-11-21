@@ -16,12 +16,16 @@ public class AutorDao implements DaoAutor {
 
 	public AutorDao() {
 		GenericDao gDao = new GenericDao();
-		c = gDao.getConnection();
+		try {
+			c = gDao.getConnection();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void adicionar(Autor a) throws GenericDAOException {
-		String sql = "INSERT INTO autor VALUES(?)";
+		String sql = "INSERT INTO autor(nome) VALUES(?);";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, a.getNome());
@@ -33,7 +37,7 @@ public class AutorDao implements DaoAutor {
 
 	@Override
 	public List<Autor> pesquisarPorNome(String nome) throws GenericDAOException {
-		String sql = "SELECT * FROM autor WHERE nome like ?";
+		String sql = "SELECT * FROM `autor`  WHERE nome like ?";
 
 		List<Autor> autores = new ArrayList<>();
 		try {
@@ -56,7 +60,7 @@ public class AutorDao implements DaoAutor {
 
 	@Override
 	public List<Autor> listarTodosAutores() throws GenericDAOException {
-		String sql = "SELECT * FROM autor";
+		String sql = "SELECT * FROM `autor`";
 
 		List<Autor> autores = new ArrayList<>();
 		try {
@@ -77,7 +81,7 @@ public class AutorDao implements DaoAutor {
 
 	@Override
 	public void alterar(Autor a) throws GenericDAOException {
-		String sql = "UPDATE autor SET nome = ? WHERE id = ?";
+		String sql = "UPDATE `autor` SET `nome`= ? WHERE id = ?";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, a.getNome());

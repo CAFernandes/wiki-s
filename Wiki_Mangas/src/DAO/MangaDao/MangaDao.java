@@ -19,13 +19,17 @@ public class MangaDao implements DaoManga {
 
 	public MangaDao() {
 		GenericDao gDao = new GenericDao();
-		c = gDao.getConnection();
+		try {
+			c = gDao.getConnection();
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void adicionar(Manga m) throws GenericDAOException {
-		String sql = "INSERT INTO manga "
-				+ "(autor_id, editora_id, titulo, genero, volume, dt_lancamento, status, link) "
+		String sql = "INSERT INTO manga(autor_id, editora_id, titulo, genero, "
+				+ "volume, dt_lancamento, estado, link) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -46,12 +50,14 @@ public class MangaDao implements DaoManga {
 
 	@Override
 	public List<Manga> pesquisarPorNome(String titulo) throws GenericDAOException {
-		String sql = "SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"
-				+ "m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m "
-				+ "INNER JOIN autor a  ON a.id = m.autor_id "
-				+ "INNER JOIN editora e ON e.codigo = m.editora_id WHERE titulo like ?"; // tem que ter um inner join
-																							// aqui
-
+		String sql = "select a.nome, e.editora, m.titulo, m.genero, m.volume, "+ 
+				"m.dt_lancamento as data_publicacao, m.estado, m.link " + 
+				"from manga m " + 
+				"inner join autor a " + 
+				"on a.id = m.autor_id " + 
+				"inner join editora e " + 
+				"on e.codigo = m.editora_id " + 
+				"WHERE m.titulo LIKE ?"; 
 		List<Manga> mangas = new ArrayList<>();
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
@@ -84,10 +90,13 @@ public class MangaDao implements DaoManga {
 
 	@Override
 	public List<Manga> listarTodosMangas() throws GenericDAOException {
-		String sql = "SELECT a.nome AS autor, e.editora, m.id, m.autor_id, m.editora_id, m.titulo, m.genero,"
-				+ "m.volume, m.dt_lancamento AS data_publicacao, m.status, m.link FROM manga m "
-				+ "INNER JOIN autor a  ON a.id = m.autor_id INNER JOIN editora e ON e.codigo = m.editora_id "
-				+ "ORDER BY m.id "; 
+		String sql = "select a.nome, e.editora, m.titulo, m.genero, m.volume,"+ 
+				"m.dt_lancamento as data_publicacao, m.estado, m.link " + 
+				"from manga m " + 
+				"inner join autor a " + 
+				"on a.id = m.autor_id " + 
+				"inner join editora e " + 
+				"on e.codigo = m.editora_id"; 
 	
 		List<Manga> mangas = new ArrayList<>();
 		try {
@@ -136,7 +145,7 @@ public class MangaDao implements DaoManga {
 		String sql = "UPDATE manga " + 
 				" SET autor_id = ?, editora_id = ? , titulo  = ? , genero = ?, " + 
 				" volume = ?, dt_lancamento = ?, status = ?, link = ?" + 
-				" WHERE manga.id = ? ";
+				" WHERE id = ? ";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, m.getAutor().getId());
@@ -154,34 +163,4 @@ public class MangaDao implements DaoManga {
 			e.printStackTrace();
 		}
 	}
-	protected int pegaIdAutor(String autor) {
-		int ideia = 0;
-		String sql = "SELECT a.id as id FROM autor a  WHERE a.nome = ? ";
-		try {
-			PreparedStatement ps = c.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			ps.setString(1, autor);
-			if(rs.next()) {
-				ideia = rs.getInt("id");
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return ideia;
-	}
-	protected int pegaIdEditora(String autor) {
-		int ideia = 0;
-		String sql = "SELECT e.codigo as id FROM editora e  WHERE e.editora = ? ";
-		try {
-			PreparedStatement ps = c.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			ps.setString(1, autor);
-			if(rs.next()) {
-				ideia = rs.getInt("id");
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return ideia;
-	}	
 }
