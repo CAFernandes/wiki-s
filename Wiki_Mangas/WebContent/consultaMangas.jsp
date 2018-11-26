@@ -64,7 +64,7 @@
 				</tr>
 			</thead>
 			<% if(sessao.getAttribute("MANGAS") == null){ %>	
-				<jsp:include page="./MangaController"/>			
+				<jsp:include page="/MangaController"/>			
 			<% }
 			List<Manga> list = (List<Manga>) sessao.getAttribute("MANGAS");
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

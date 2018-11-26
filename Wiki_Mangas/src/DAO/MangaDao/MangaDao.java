@@ -29,7 +29,8 @@ public class MangaDao implements DaoManga {
 	@Override
 	public void adicionar(Manga m) throws GenericDAOException {
 		String sql = "INSERT INTO `manga`(`autor_id`, `editora_id`, `titulo`, `genero`, "
-				+ "`volume`, `dt_lancamento`, `estado`, `link`) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "`volume`, `dt_lancamento`, `estado`, `link`) " 
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setInt(1, m.getAutor().getId());

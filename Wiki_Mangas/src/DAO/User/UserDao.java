@@ -5,8 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JOptionPane;
-
 import DAO.GenericDAOException;
 import DAO.connection.GenericDao;
 import model.User;
@@ -34,7 +32,6 @@ public class UserDao implements iUserDao {
 			ps.setString(2, user.getUser());
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				JOptionPane.showMessageDialog(null, rs.getString("valido"));
 				if(rs.getString("valido").equals("admin")) {
 					user.setLogado(true);
 				}
