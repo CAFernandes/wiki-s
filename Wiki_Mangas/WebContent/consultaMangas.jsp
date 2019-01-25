@@ -31,19 +31,18 @@
 	<div class="container-fluid" style="margin-top: 80px">
 		<h2>Lista de Mangás</h2>
 	</div>
-	<%if(sessao.getAttribute("msg") != null && sessao.getAttribute("msg").equals("error")){ %>
-	<div class="col-lg-12 alert">
-		<h3 class="alert alert-primary">Não foi localizado manga(s)</h3>
+	<%if(sessao.getAttribute("msg") != null){ %>
+	<div class="col-lg-12">
+		<h3 class="alert alert-primary"><%=sessao.getAttribute("msg") %></h3>
 	</div>
 	<% sessao.removeAttribute("msg");
 	} %>
-	<form action = "./MangaController" method="get">
+	<form action = "./MangaController" method="post">
 		<div class="form-group col-md-8 text-center input-group">
 			<div class="input-group-btn col-md-12 text-center">
-				<input type="text" class="form-control" id="titulo" name="titulo"
+				<input type="text" class="form-control" name="titulo"
 					placeholder="Pesquisar por Nome">
-				<button type="submit" name="cmd" class="btn btn-primary btn-default"
-					value="Pesquisar">Pesquisar</button>
+				<button type="submit" class="btn btn-primary btn-default">Pesquisar</button>
 			</div>
 		</div>
 		<table class="table table-striped">

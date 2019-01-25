@@ -22,11 +22,16 @@
 		</h2>
 	</div>
 	<form id="form-cadastro" method="POST" action="./AutorController">
-		<div class="form-group col-md-6">
-			<label for="inputNome" style="color: white">Nome</label> 
-			<input type="text" name="nome" class="form-control" id="inputNome">
+		<div class="row">
+			<div class="form-group col-md-8">
+				<label for="inputNome" style="color: white">Nome</label> 
+				<input type="text" name="nome" class="form-control" id="inputNome">
+			</div>
+			<div class="form-group col-md-8">
+				<label></label>
+				<button id="submit" type="submit" class="btn btn-primary btn-default">Cadastrar</button>
+			</div>
 		</div>
-		<button id="submit" type="submit" class="btn btn-primary btn-default">Cadastrar</button>
 	</form>
 </body>
 </html>

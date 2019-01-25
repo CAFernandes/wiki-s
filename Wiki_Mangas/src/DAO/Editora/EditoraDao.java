@@ -36,21 +36,25 @@ public class EditoraDao implements DaoEditora {
 		String sql = "SELECT * FROM editora WHERE  editora like ?";
 
 		List<Editora> editoras = new ArrayList<>();
-		try {
-			PreparedStatement ps = c.prepareStatement(sql);
-			ps.setString(1, "%" + editora + "%");
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Editora e = new Editora();
-				e.setId(rs.getInt("codigo"));
-				e.setEditora(rs.getString("editora"));
-				editoras.add(e);
+		if(editora.equals("") || editora.isEmpty()) {
+			return editoras;
+		}else {
+			try {
+				PreparedStatement ps = c.prepareStatement(sql);
+				ps.setString(1, "%" + editora + "%");
+				ResultSet rs = ps.executeQuery();
+	
+				while (rs.next()) {
+					Editora e = new Editora();
+					e.setId(rs.getInt("codigo"));
+					e.setEditora(rs.getString("editora"));
+					editoras.add(e);
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+			return editoras;
 		}
-		return editoras;
 	}
 
 	@Override

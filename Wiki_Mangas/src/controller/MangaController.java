@@ -147,7 +147,7 @@ public class MangaController extends HttpServlet {
 	private void consultar(HttpServletRequest request, HttpServletResponse response, DaoManga dManga) throws IOException {
 		HttpSession sessao = request.getSession();
 		try {
-			
+			System.out.println(request.getParameter("titulo"));
 			List<Manga> lista = dManga.pesquisarPorNome(request.getParameter("titulo")); // pega o que o usuario difitou no campo de busca pelo titulo e coloca numa lista de mangas
 			if(lista.isEmpty()) {
 				sessao.setAttribute("msg", "error");//Caso não encontre uma editora eu passo uma mensagem de erro

@@ -22,7 +22,7 @@
 	<jsp:include page="menuAdmin.jsp"></jsp:include>
 	
 	<div class="container-fluid" style="margin-top:80px">
-		<h2>
+		<h2 class="text-left">
 			<b>Alterar Editora</b>
 		</h2>
 	</div>
@@ -36,12 +36,13 @@
 	Editora e = list.get(Integer.parseInt(request.getParameter("id"))-1);%>
 	<form id="form" action="./EditoraController" method="post">
 		<div class="form-group col-md-6">
-		      <label for="inputNome"><b>Editora</b></label>
+		      <label for="inputNome"><b>Nome</b></label>
 		      <input name="editora" type="text" class="form-control" id="inputNome"
 		      value="<%=e.getEditora() %>">
 		</div>
-		
-		<button id="submit" type="submit" class="btn btn-primary btn-default" >Alterar</button>
+		<div class="form-group col-md-4">
+			<button id="submit" type="submit" class="btn btn-primary btn-default" >Alterar</button>
+		</div>
 	</form>
 </body>
 </html>

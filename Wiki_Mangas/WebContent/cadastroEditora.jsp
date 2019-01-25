@@ -23,11 +23,15 @@
 	</div>
 
 	<form id="form-cadastro" method="POST" action="./EditoraController">
-		<div class="form-group col-md-6">
-			<label for="inputNome">Editora</label> 
-			<input type="text" class="form-control" id="inputNome" name="editora">
+		<div class="row">
+			<div class="form-group col-md-8">
+				<label for="inputNome">Editora</label> 
+				<input type="text" class="form-control" id="inputNome" name="editora">
+			</div>
+			<div class="form-group col-md-8">
+				<button id="submit" type="submit" class="btn btn-primary btn-default">Cadastrar</button>
+			</div>
 		</div>
-		<button id="submit" type="submit" class="btn btn-primary btn-default">Cadastrar</button>
 	</form>
 </body>
 </html>

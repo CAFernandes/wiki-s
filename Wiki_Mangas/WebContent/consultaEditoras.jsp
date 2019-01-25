@@ -27,7 +27,7 @@
 	<jsp:include page="menuVisitante.jsp"/>
 	<% } %>
 	<div class="container-fluid" style="margin-top: 80px">	
-		<h2> Lista de Editores </h2>
+		<h2> Lista de Editoras </h2>
 	</div>
 	<%if(sessao.getAttribute("msg") != null){ %>
 	<div class="col-lg-12">

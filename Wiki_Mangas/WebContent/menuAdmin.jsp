@@ -26,10 +26,10 @@
 			    	<a class="nav-link" href="./consultaMangas.jsp">Lista de Mangás</a>
 			    </li>
 			    <li class="nav-item">
-			    	<a class="nav-link" href="./consultaAutores.jsp">Lista de Autores</a>
+			    	<a class="nav-link" href="./AutorController">Lista de Autores</a>
 			    </li>
 			    <li class="nav-item">
-					<a class="nav-link" href="./consultaEditoras.jsp">Lista de Editoras</a>
+					<a class="nav-link" href="./EditoraController">Lista de Editoras</a>
 			    </li>
 			   	<li class="nav-item">
 			       	<a class ="nav-link" href="./logoff">Usuário:<strong>Administrador</strong></a>

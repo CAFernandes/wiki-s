@@ -108,13 +108,13 @@ public class EditoraController extends HttpServlet {
 	private void listar(HttpServletRequest request, HttpServletResponse response, DaoEditora dEditora)
 			throws IOException {
 		HttpSession sessao = request.getSession();
+		sessao.removeAttribute("EDITORAS");
 		try {
 			List<Editora> lista = dEditora.listarTodasEditoras();
 			sessao.setAttribute("EDITORAS", lista);
 		} catch (GenericDAOException e2) {
 			e2.printStackTrace();
 		}
-
 		response.sendRedirect("./consultaEditoras.jsp");
 	}
 
@@ -133,7 +133,7 @@ public class EditoraController extends HttpServlet {
 			} else {
 				sessao.setAttribute("EDITORAS", lista);
 				sessao.setAttribute("msg", "Foram encontrado "+lista.size()+" resultados");
-				response.sendRedirect("./consultaAutores.jsp");
+				response.sendRedirect("./consultaEditoras.jsp");
 			}
 		} catch (GenericDAOException e) {
 			e.printStackTrace();
